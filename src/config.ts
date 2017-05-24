@@ -47,6 +47,8 @@ function decodeConfig(encoded: EncodedConfig): Config {
   }
 }
 
+// TODO: pluck all needed config data from a server invite/registration
+
 export function newConfig(server: string): Config {
   return {
     version: 1,
