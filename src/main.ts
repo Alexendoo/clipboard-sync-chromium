@@ -1,6 +1,6 @@
 /// <reference path="../node_modules/@types/chrome/index.d.ts" />
 
-import {getConfig, setConfig} from './config'
+import { getConfig, setConfig, newConfig } from './config'
 
 declare var require: (path: string) => void
 
@@ -12,6 +12,7 @@ declare global {
   }
 }
 
+window.newConfig = newConfig
 window.getConfig = getConfig
 window.setConfig = setConfig
 
