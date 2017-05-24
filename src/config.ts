@@ -1,10 +1,11 @@
 import { box, sign } from 'tweetnacl'
 import { encodeBase64, decodeBase64 } from 'tweetnacl-util'
 
-export interface Config {
-  version: number,
+export interface Config  {
   curve25519: nacl.BoxKeyPair,
-  ed25519: nacl.SignKeyPair
+  ed25519: nacl.SignKeyPair,
+  server: string,
+  version: 1
 }
 
 type Stringify<T> = {
@@ -12,9 +13,10 @@ type Stringify<T> = {
 }
 
 interface EncodedConfig {
-  version: number,
   curve25519: Stringify<nacl.BoxKeyPair>,
-  ed25519: Stringify<nacl.SignKeyPair>
+  ed25519: Stringify<nacl.SignKeyPair>,
+  server: string,
+  version: 1
 }
 
 function encodeConfig(config: Config): EncodedConfig {
@@ -45,12 +47,12 @@ function decodeConfig(encoded: EncodedConfig): Config {
   }
 }
 
-
-export function newConfig(): Config {
+export function newConfig(server: string): Config {
   return {
     version: 1,
     curve25519: box.keyPair(),
-    ed25519: sign.keyPair()
+    ed25519: sign.keyPair(),
+    server
   }
 }
 
@@ -60,7 +62,7 @@ export function getConfig(): Promise<Config> {
       const config = items.config as EncodedConfig | undefined
 
       if (config === undefined) {
-        resolve(setConfig(newConfig()))
+        reject("config undefined")
       } else {
         resolve(decodeConfig(config))
       }
