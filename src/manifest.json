@@ -5,10 +5,16 @@
   "description": "Syncs the clipboard across multiple devices",
   "version": "0.1.0",
   "background": {
-    "scripts": ["main.js"]
+    "scripts": ["bundle.js"]
   },
   "permissions": [
+    "background",
     "clipboardRead",
-    "clipboardWrite"
+    "clipboardWrite",
+    "gcm",
+    "storage"
+  ],
+  "web_accessible_resources": [
+    "bundle.js.map"
   ]
 }
