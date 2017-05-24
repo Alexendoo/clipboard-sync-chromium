@@ -15,7 +15,6 @@ declare global {
 window.getConfig = getConfig
 window.setConfig = setConfig
 
-
 chrome.runtime.onStartup.addListener(() => {
   chrome.storage.local.get("registered", result => {
     if (result["registered"]) return
