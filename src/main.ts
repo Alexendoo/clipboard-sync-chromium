@@ -17,12 +17,10 @@ window.getConfig = getConfig
 window.setConfig = setConfig
 
 chrome.runtime.onStartup.addListener(() => {
-  chrome.storage.local.get("registered", result => {
-    if (result["registered"]) return
+  chrome.storage.local.get('registered', result => {
+    if (result['registered']) return
 
-    console.log('moo')
-
-    const senderIds = ["303334042045"]
+    const senderIds = ['303334042045']
     chrome.gcm.register(senderIds, registrationCallback)
   })
 })

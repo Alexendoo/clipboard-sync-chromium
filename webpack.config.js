@@ -1,32 +1,32 @@
 const path = require('path')
 
 module.exports = {
-  entry: "./src/main.ts",
+  entry: './src/main.ts',
 
   output: {
-    path: path.resolve(__dirname, "dist"),
-    filename: "bundle.js",
+    path: path.resolve(__dirname, 'dist'),
+    filename: 'bundle.js',
   },
 
   resolve: {
-    extensions: [".ts", ".js", ".json"],
+    extensions: ['.ts', '.js', '.json'],
   },
 
   module: {
     rules: [
       {
         test: /\.ts$/,
-        loader: "ts-loader",
+        loader: 'ts-loader',
       },
       {
         test: /.json$/,
-        loader: "file-loader",
+        loader: 'file-loader',
         query: {
-          name: "[name].[ext]",
+          name: '[name].[ext]',
         },
-      }
+      },
     ],
   },
 
-  devtool: "source-map",
+  devtool: 'source-map',
 }
