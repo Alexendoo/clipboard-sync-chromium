@@ -1,7 +1,7 @@
 /// <reference path="../node_modules/@types/chrome/index.d.ts" />
 
 import { getConfig, setConfig, newConfig } from './config'
-import { getInfo } from './registration'
+import { getInfo, register } from './registration'
 
 declare var require: (path: string) => void
 
@@ -17,6 +17,7 @@ window.newConfig = newConfig
 window.getConfig = getConfig
 window.setConfig = setConfig
 window.getInfo = getInfo
+window.register = register
 
 chrome.runtime.onStartup.addListener(() => {
   chrome.storage.local.get('registered', result => {
