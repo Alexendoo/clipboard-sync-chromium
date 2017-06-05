@@ -1,4 +1,4 @@
-import { Config } from './config'
+import { Config } from './state'
 import { get, post } from './http'
 
 import { sign } from 'tweetnacl'
@@ -9,7 +9,7 @@ export async function getInfo(config: Config) {
   console.log(json)
 }
 
-export async function register(config: Config) {
+export async function registerUser(config: Config) {
   const pkey = encodeBase64(config.ed25519.publicKey)
   const link = {
     type: 'root',
@@ -23,13 +23,26 @@ export async function register(config: Config) {
   }
 
   const linkJSON = JSON.stringify(link)
-  const sig = encodeBase64(sign(decodeUTF8(linkJSON), config.ed25519.secretKey))
+  const linkBytes = decodeUTF8(linkJSON)
+  const sig = encodeBase64(sign.detached(linkBytes, config.ed25519.secretKey))
 
   const linkRequest = {
-    link,
+    link: encodeBase64(linkBytes),
     sig,
     pkey,
   }
 
   console.log(await post(config, '/chain', JSON.stringify(linkRequest)))
+}
+
+export async function registerDevice(config: Config) {
+  const signerPkey = encodeBase64(config.ed25519.publicKey)
+  const link = {
+    type: 'new_device',
+    body: {
+      name: 'bar',
+    },
+    seqno: 1,
+    prev: null,
+  }
 }

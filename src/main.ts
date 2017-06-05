@@ -1,7 +1,7 @@
 /// <reference path="../node_modules/@types/chrome/index.d.ts" />
 
-import { getConfig, setConfig, newConfig } from './config'
-import { getInfo, register } from './registration'
+import { getInfo, registerUser } from './registration'
+import { loadStore, saveStore, newStore } from './state'
 
 declare var require: (path: string) => void
 
@@ -13,11 +13,11 @@ declare global {
   }
 }
 
-window.newConfig = newConfig
-window.getConfig = getConfig
-window.setConfig = setConfig
 window.getInfo = getInfo
-window.register = register
+window.registerUser = registerUser
+window.loadStore = loadStore
+window.saveStore = saveStore
+window.newStore = newStore
 
 chrome.runtime.onStartup.addListener(() => {
   chrome.storage.local.get('registered', result => {

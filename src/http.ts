@@ -1,4 +1,4 @@
-import { Config } from './config'
+import { Config } from './state'
 
 export async function get(config: Config, path: string) {
   const target = config.server + path

@@ -17,7 +17,9 @@
   "devDependencies": {
     "@types/chrome": "^0.0.46",
     "file-loader": "^0.11.1",
+    "idb": "^2.0.3",
     "prettier": "^1.4.2",
+    "redux": "^3.6.0",
     "ts-loader": "^2.1.0",
     "tslint": "^5.3.2",
     "tweetnacl": "^1.0.0",
