@@ -2,7 +2,8 @@ import { Config } from './state'
 import { get, post } from './http'
 
 import { sign } from 'tweetnacl'
-import { encodeBase64, decodeUTF8 } from 'tweetnacl-util'
+import { encode as encodeUTF8 } from '@stablelib/utf8'
+import { encode as encodeBase64 } from '@stablelib/base64'
 
 export async function getInfo(config: Config) {
   const json = await get(config, '/about')
@@ -23,7 +24,7 @@ export async function registerUser(config: Config) {
   }
 
   const linkJSON = JSON.stringify(link)
-  const linkBytes = decodeUTF8(linkJSON)
+  const linkBytes = encodeUTF8(linkJSON)
   const sig = encodeBase64(sign.detached(linkBytes, config.ed25519.secretKey))
 
   const linkRequest = {

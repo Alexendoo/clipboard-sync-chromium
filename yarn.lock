@@ -2,6 +2,14 @@
 # yarn lockfile v1
 
 
+"@stablelib/base64@^0.7.2":
+  version "0.7.2"
+  resolved "https://registry.yarnpkg.com/@stablelib/base64/-/base64-0.7.2.tgz#fbbb8d60c26f514cdcb5b791cf911bfb1db4b4b4"
+
+"@stablelib/utf8@^0.8.1":
+  version "0.8.1"
+  resolved "https://registry.yarnpkg.com/@stablelib/utf8/-/utf8-0.8.1.tgz#65bf15fca0df6c7b1f72239de66487bea87f78b1"
+
 "@types/chrome@^0.0.46":
   version "0.0.46"
   resolved "https://registry.yarnpkg.com/@types/chrome/-/chrome-0.0.46.tgz#f597623b2244c7484bbf59aceb9c8d16a39d4cd7"
@@ -479,10 +487,6 @@ des.js@^1.0.0:
   dependencies:
     inherits "^2.0.1"
     minimalistic-assert "^1.0.0"
-
-dexie@^1.5.1:
-  version "1.5.1"
-  resolved "https://registry.yarnpkg.com/dexie/-/dexie-1.5.1.tgz#ac3ad5a0ebaf7e6e42760db58710418d4a756624"
 
 diff@^3.2.0:
   version "3.2.0"
