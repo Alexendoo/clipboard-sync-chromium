@@ -32,7 +32,7 @@ export async function registerUser(config: Config) {
     signature: sign.detached(body, config.ed25519.secretKey),
   })
 
-  const payload = messages.Signed.encode(signed as messages.ISigned).finish()
+  const payload = messages.Signed.encode(signed).finish()
 
   return post(config, '/chain', payload)
 }
