@@ -2,7 +2,8 @@
   "name": "clipboard-sync-chromium",
   "version": "0.1.0",
   "scripts": {
-    "build": "webpack"
+    "build": "webpack",
+    "proto": "pbjs -t static-module -w es6 -o src/messages/index.js src/messages/sigchain.proto && pbts -o src/messages/index.d.ts src/messages/index.js"
   },
   "repository": {
     "type": "git",
@@ -21,6 +22,7 @@
     "file-loader": "^0.11.1",
     "idb": "^2.0.3",
     "prettier": "^1.4.2",
+    "protobufjs": "dcodeIO/protobuf.js",
     "redux": "^3.6.0",
     "ts-loader": "^2.1.0",
     "tslint": "^5.3.2",

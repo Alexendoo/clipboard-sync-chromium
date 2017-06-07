@@ -1,5 +1,6 @@
 import { Config } from './state'
 import { get, post } from './http'
+import { messages } from './messages'
 
 import { sign } from 'tweetnacl'
 import { encode as encodeUTF8 } from '@stablelib/utf8'
@@ -11,39 +12,27 @@ export async function getInfo(config: Config) {
 }
 
 export async function registerUser(config: Config) {
-  const pkey = encodeBase64(config.ed25519.publicKey)
-  const link = {
-    type: 'root',
-    body: {
-      name: 'foo',
-      pkey,
-      fcm: 'f',
-    },
-    seqno: 0,
-    prev: null,
-  }
+  const newDevice = new messages.NewDevice({
+    FCMToken: 'f',
+    name: 'moo',
+    publicKey: config.ed25519.publicKey,
+  })
 
-  const linkJSON = JSON.stringify(link)
-  const linkBytes = encodeUTF8(linkJSON)
-  const sig = encodeBase64(sign.detached(linkBytes, config.ed25519.secretKey))
+  const link = messages.Link.create({
+    newDevice,
+    prev: undefined,
+    sequenceNumber: 0,
+  })
 
-  const linkRequest = {
-    link: encodeBase64(linkBytes),
-    sig,
-    pkey,
-  }
+  const body = messages.Link.encode(link as messages.ILink).finish()
 
-  console.log(await post(config, '/chain', JSON.stringify(linkRequest)))
-}
+  const signed = new messages.Signed({
+    body,
+    publicKey: config.ed25519.publicKey,
+    signature: sign.detached(body, config.ed25519.secretKey),
+  })
 
-export async function registerDevice(config: Config) {
-  const signerPkey = encodeBase64(config.ed25519.publicKey)
-  const link = {
-    type: 'new_device',
-    body: {
-      name: 'bar',
-    },
-    seqno: 1,
-    prev: null,
-  }
+  const payload = messages.Signed.encode(signed as messages.ISigned).finish()
+
+  return post(config, '/chain', payload)
 }
