@@ -5,7 +5,7 @@ import { loadStore, saveStore, newStore } from './state'
 
 declare var require: (path: string) => void
 
-require('./manifest')
+require('./manifest.json')
 
 declare global {
   interface Window {

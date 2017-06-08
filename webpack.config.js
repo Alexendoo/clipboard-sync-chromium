@@ -1,15 +1,19 @@
 const path = require('path')
+const WebpackCleanupPlugin = require('webpack-cleanup-plugin')
 
 module.exports = {
-  entry: './src/main.ts',
+  entry: {
+    background: './background.ts',
+    popup: './popup/popup.ts',
+  },
 
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: 'bundle.js',
+    filename: '[name].js',
   },
 
   resolve: {
-    extensions: ['.ts', '.js', '.json'],
+    extensions: ['.ts', '.js'],
   },
 
   module: {
@@ -19,7 +23,7 @@ module.exports = {
         loader: 'ts-loader',
       },
       {
-        test: /.json$/,
+        test: /.(?:json|html)$/,
         loader: 'file-loader',
         query: {
           name: '[name].[ext]',
@@ -28,5 +32,13 @@ module.exports = {
     ],
   },
 
+  context: path.resolve(__dirname, 'src'),
+
   devtool: 'source-map',
+
+  plugins: [
+    new WebpackCleanupPlugin({
+      quiet: true,
+    }),
+  ],
 }
