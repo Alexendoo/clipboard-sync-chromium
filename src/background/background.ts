@@ -1,11 +1,11 @@
-/// <reference path="../node_modules/@types/chrome/index.d.ts" />
+/// <reference path="../../node_modules/@types/chrome/index.d.ts" />
 
-import { getInfo, registerUser } from './registration'
-import { loadStore, saveStore, newStore } from './state'
+import { getInfo, registerUser } from '../registration'
+import { loadStore, saveStore, newStore } from '../state'
 
 declare var require: (path: string) => void
 
-require('./manifest.json')
+require('../manifest.json')
 
 declare global {
   interface Window {

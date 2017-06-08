@@ -3,7 +3,7 @@ const WebpackCleanupPlugin = require('webpack-cleanup-plugin')
 
 module.exports = {
   entry: {
-    background: './background.ts',
+    background: './background/background.ts',
     popup: './popup/popup.ts',
   },
 
