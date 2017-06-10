@@ -4,7 +4,7 @@ const WebpackCleanupPlugin = require('webpack-cleanup-plugin')
 module.exports = {
   entry: {
     background: './background/background.ts',
-    popup: './popup/popup.ts',
+    popup: './popup/popup.tsx',
   },
 
   output: {
@@ -13,13 +13,14 @@ module.exports = {
   },
 
   resolve: {
-    extensions: ['.ts', '.js'],
+    modules: ['node_modules', path.join(__dirname, 'node_modules')],
+    extensions: ['.ts', '.tsx', '.js'],
   },
 
   module: {
     rules: [
       {
-        test: /\.ts$/,
+        test: /\.tsx?$/,
         loader: 'ts-loader',
       },
       {

@@ -21,6 +21,8 @@
     "@types/chrome": "^0.0.46",
     "file-loader": "^0.11.1",
     "idb": "^2.0.3",
+    "preact": "^8.1.0",
+    "preact-router": "^2.5.2",
     "prettier": "^1.4.2",
     "protobufjs": "dcodeIO/protobuf.js",
     "redux": "^3.6.0",

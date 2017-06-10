@@ -3,9 +3,8 @@
 import { getInfo, registerUser } from '../registration'
 import { loadStore, saveStore, newStore } from '../state'
 
-declare var require: (path: string) => void
-
-require('../manifest.json')
+import '../manifest.json'
+import './background.html'
 
 declare global {
   interface Window {
