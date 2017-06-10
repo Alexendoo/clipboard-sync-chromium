@@ -46,6 +46,9 @@ export async function loadStore(): Promise<Store<State>> {
   const tx = db.transaction('state', 'readonly')
 
   const state = await tx.objectStore('state').get(0)
+  if (state === undefined) {
+    throw new Error('State not found')
+  }
 
   return createStore(reducer, state)
 }
