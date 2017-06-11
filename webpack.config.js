@@ -1,5 +1,7 @@
 const path = require('path')
-const WebpackCleanupPlugin = require('webpack-cleanup-plugin')
+const rimraf = require('rimraf')
+
+rimraf.sync('dist')
 
 module.exports = {
   entry: {
@@ -36,10 +38,4 @@ module.exports = {
   context: path.resolve(__dirname, 'src'),
 
   devtool: 'source-map',
-
-  plugins: [
-    new WebpackCleanupPlugin({
-      quiet: true,
-    }),
-  ],
 }

@@ -26,11 +26,11 @@
     "prettier": "^1.4.2",
     "protobufjs": "dcodeIO/protobuf.js",
     "redux": "^3.6.0",
+    "rimraf": "^2.6.1",
     "ts-loader": "^2.1.0",
     "tslint": "^5.3.2",
     "tweetnacl": "^1.0.0",
     "typescript": "^2.3.2",
-    "webpack": "^2.6.0",
-    "webpack-cleanup-plugin": "^0.5.1"
+    "webpack": "^2.6.0"
   }
 }
