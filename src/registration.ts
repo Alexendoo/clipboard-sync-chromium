@@ -1,6 +1,6 @@
 import { Config } from './state'
 import { get, post } from './http'
-import { messages } from './messages'
+import { NewDevice, Link, ILink, Signed } from './messages'
 
 import { sign } from 'tweetnacl'
 
@@ -10,27 +10,27 @@ export async function getInfo(config: Config) {
 }
 
 export async function registerUser(config: Config) {
-  const newDevice = new messages.NewDevice({
+  const newDevice = new NewDevice({
     FCMToken: 'f',
     name: 'moo',
     publicKey: config.ed25519.publicKey,
   })
 
-  const link = messages.Link.create({
+  const link = Link.create({
     newDevice,
     prev: undefined,
     sequenceNumber: 0,
   })
 
-  const body = messages.Link.encode(link as messages.ILink).finish()
+  const body = Link.encode(link as ILink).finish()
 
-  const signed = new messages.Signed({
+  const signed = new Signed({
     body,
     publicKey: config.ed25519.publicKey,
     signature: sign.detached(body, config.ed25519.secretKey),
   })
 
-  const payload = messages.Signed.encode(signed).finish()
+  const payload = Signed.encode(signed).finish()
 
   return post(config, '/chain', payload)
 }

@@ -1,5 +1,4 @@
 syntax = "proto3";
-package messages;
 
 message Signed {
   bytes body = 1;
