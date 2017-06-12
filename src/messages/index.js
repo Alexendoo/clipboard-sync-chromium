@@ -43,24 +43,33 @@ export const messages = $root.messages = (() => {
 
         /**
          * Signed body.
-         * @type {Uint8Array}
+         * @member {Uint8Array}body
+         * @memberof messages.Signed
+         * @instance
          */
         Signed.prototype.body = $util.newBuffer([]);
 
         /**
          * Signed signature.
-         * @type {Uint8Array}
+         * @member {Uint8Array}signature
+         * @memberof messages.Signed
+         * @instance
          */
         Signed.prototype.signature = $util.newBuffer([]);
 
         /**
          * Signed publicKey.
-         * @type {Uint8Array}
+         * @member {Uint8Array}publicKey
+         * @memberof messages.Signed
+         * @instance
          */
         Signed.prototype.publicKey = $util.newBuffer([]);
 
         /**
          * Creates a new Signed instance using the specified properties.
+         * @function create
+         * @memberof messages.Signed
+         * @static
          * @param {messages.ISigned=} [properties] Properties to set
          * @returns {messages.Signed} Signed instance
          */
@@ -70,6 +79,9 @@ export const messages = $root.messages = (() => {
 
         /**
          * Encodes the specified Signed message. Does not implicitly {@link messages.Signed.verify|verify} messages.
+         * @function encode
+         * @memberof messages.Signed
+         * @static
          * @param {messages.ISigned} message Signed message or plain object to encode
          * @param {$protobuf.Writer} [writer] Writer to encode to
          * @returns {$protobuf.Writer} Writer
@@ -88,6 +100,9 @@ export const messages = $root.messages = (() => {
 
         /**
          * Encodes the specified Signed message, length delimited. Does not implicitly {@link messages.Signed.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof messages.Signed
+         * @static
          * @param {messages.ISigned} message Signed message or plain object to encode
          * @param {$protobuf.Writer} [writer] Writer to encode to
          * @returns {$protobuf.Writer} Writer
@@ -98,6 +113,9 @@ export const messages = $root.messages = (() => {
 
         /**
          * Decodes a Signed message from the specified reader or buffer.
+         * @function decode
+         * @memberof messages.Signed
+         * @static
          * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
          * @param {number} [length] Message length if known beforehand
          * @returns {messages.Signed} Signed
@@ -130,6 +148,9 @@ export const messages = $root.messages = (() => {
 
         /**
          * Decodes a Signed message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof messages.Signed
+         * @static
          * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
          * @returns {messages.Signed} Signed
          * @throws {Error} If the payload is not a reader or valid buffer
@@ -143,6 +164,9 @@ export const messages = $root.messages = (() => {
 
         /**
          * Verifies a Signed message.
+         * @function verify
+         * @memberof messages.Signed
+         * @static
          * @param {Object.<string,*>} message Plain object to verify
          * @returns {string|null} `null` if valid, otherwise the reason why it is not
          */
@@ -163,6 +187,9 @@ export const messages = $root.messages = (() => {
 
         /**
          * Creates a Signed message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof messages.Signed
+         * @static
          * @param {Object.<string,*>} object Plain object
          * @returns {messages.Signed} Signed
          */
@@ -190,6 +217,9 @@ export const messages = $root.messages = (() => {
 
         /**
          * Creates a plain object from a Signed message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof messages.Signed
+         * @static
          * @param {messages.Signed} message Signed
          * @param {$protobuf.IConversionOptions} [options] Conversion options
          * @returns {Object.<string,*>} Plain object
@@ -214,6 +244,9 @@ export const messages = $root.messages = (() => {
 
         /**
          * Converts this Signed to JSON.
+         * @function toJSON
+         * @memberof messages.Signed
+         * @instance
          * @returns {Object.<string,*>} JSON object
          */
         Signed.prototype.toJSON = function toJSON() {
@@ -250,24 +283,33 @@ export const messages = $root.messages = (() => {
 
         /**
          * NewDevice name.
-         * @type {string}
+         * @member {string}name
+         * @memberof messages.NewDevice
+         * @instance
          */
         NewDevice.prototype.name = "";
 
         /**
          * NewDevice publicKey.
-         * @type {Uint8Array}
+         * @member {Uint8Array}publicKey
+         * @memberof messages.NewDevice
+         * @instance
          */
         NewDevice.prototype.publicKey = $util.newBuffer([]);
 
         /**
          * NewDevice FCMToken.
-         * @type {string}
+         * @member {string}FCMToken
+         * @memberof messages.NewDevice
+         * @instance
          */
         NewDevice.prototype.FCMToken = "";
 
         /**
          * Creates a new NewDevice instance using the specified properties.
+         * @function create
+         * @memberof messages.NewDevice
+         * @static
          * @param {messages.INewDevice=} [properties] Properties to set
          * @returns {messages.NewDevice} NewDevice instance
          */
@@ -277,6 +319,9 @@ export const messages = $root.messages = (() => {
 
         /**
          * Encodes the specified NewDevice message. Does not implicitly {@link messages.NewDevice.verify|verify} messages.
+         * @function encode
+         * @memberof messages.NewDevice
+         * @static
          * @param {messages.INewDevice} message NewDevice message or plain object to encode
          * @param {$protobuf.Writer} [writer] Writer to encode to
          * @returns {$protobuf.Writer} Writer
@@ -295,6 +340,9 @@ export const messages = $root.messages = (() => {
 
         /**
          * Encodes the specified NewDevice message, length delimited. Does not implicitly {@link messages.NewDevice.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof messages.NewDevice
+         * @static
          * @param {messages.INewDevice} message NewDevice message or plain object to encode
          * @param {$protobuf.Writer} [writer] Writer to encode to
          * @returns {$protobuf.Writer} Writer
@@ -305,6 +353,9 @@ export const messages = $root.messages = (() => {
 
         /**
          * Decodes a NewDevice message from the specified reader or buffer.
+         * @function decode
+         * @memberof messages.NewDevice
+         * @static
          * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
          * @param {number} [length] Message length if known beforehand
          * @returns {messages.NewDevice} NewDevice
@@ -337,6 +388,9 @@ export const messages = $root.messages = (() => {
 
         /**
          * Decodes a NewDevice message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof messages.NewDevice
+         * @static
          * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
          * @returns {messages.NewDevice} NewDevice
          * @throws {Error} If the payload is not a reader or valid buffer
@@ -350,6 +404,9 @@ export const messages = $root.messages = (() => {
 
         /**
          * Verifies a NewDevice message.
+         * @function verify
+         * @memberof messages.NewDevice
+         * @static
          * @param {Object.<string,*>} message Plain object to verify
          * @returns {string|null} `null` if valid, otherwise the reason why it is not
          */
@@ -370,6 +427,9 @@ export const messages = $root.messages = (() => {
 
         /**
          * Creates a NewDevice message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof messages.NewDevice
+         * @static
          * @param {Object.<string,*>} object Plain object
          * @returns {messages.NewDevice} NewDevice
          */
@@ -391,6 +451,9 @@ export const messages = $root.messages = (() => {
 
         /**
          * Creates a plain object from a NewDevice message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof messages.NewDevice
+         * @static
          * @param {messages.NewDevice} message NewDevice
          * @param {$protobuf.IConversionOptions} [options] Conversion options
          * @returns {Object.<string,*>} Plain object
@@ -415,6 +478,9 @@ export const messages = $root.messages = (() => {
 
         /**
          * Converts this NewDevice to JSON.
+         * @function toJSON
+         * @memberof messages.NewDevice
+         * @instance
          * @returns {Object.<string,*>} JSON object
          */
         NewDevice.prototype.toJSON = function toJSON() {
@@ -451,19 +517,25 @@ export const messages = $root.messages = (() => {
 
         /**
          * Link prev.
-         * @type {Uint8Array}
+         * @member {Uint8Array}prev
+         * @memberof messages.Link
+         * @instance
          */
         Link.prototype.prev = $util.newBuffer([]);
 
         /**
          * Link sequenceNumber.
-         * @type {number}
+         * @member {number}sequenceNumber
+         * @memberof messages.Link
+         * @instance
          */
         Link.prototype.sequenceNumber = 0;
 
         /**
          * Link newDevice.
-         * @type {(messages.INewDevice|null)}
+         * @member {(messages.INewDevice|null|undefined)}newDevice
+         * @memberof messages.Link
+         * @instance
          */
         Link.prototype.newDevice = null;
 
@@ -472,8 +544,9 @@ export const messages = $root.messages = (() => {
 
         /**
          * Link body.
-         * @name messages.Link#body
-         * @type {string|undefined}
+         * @member {string|undefined} body
+         * @memberof messages.Link
+         * @instance
          */
         Object.defineProperty(Link.prototype, "body", {
             get: $util.oneOfGetter($oneOfFields = ["newDevice"]),
@@ -482,6 +555,9 @@ export const messages = $root.messages = (() => {
 
         /**
          * Creates a new Link instance using the specified properties.
+         * @function create
+         * @memberof messages.Link
+         * @static
          * @param {messages.ILink=} [properties] Properties to set
          * @returns {messages.Link} Link instance
          */
@@ -491,6 +567,9 @@ export const messages = $root.messages = (() => {
 
         /**
          * Encodes the specified Link message. Does not implicitly {@link messages.Link.verify|verify} messages.
+         * @function encode
+         * @memberof messages.Link
+         * @static
          * @param {messages.ILink} message Link message or plain object to encode
          * @param {$protobuf.Writer} [writer] Writer to encode to
          * @returns {$protobuf.Writer} Writer
@@ -509,6 +588,9 @@ export const messages = $root.messages = (() => {
 
         /**
          * Encodes the specified Link message, length delimited. Does not implicitly {@link messages.Link.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof messages.Link
+         * @static
          * @param {messages.ILink} message Link message or plain object to encode
          * @param {$protobuf.Writer} [writer] Writer to encode to
          * @returns {$protobuf.Writer} Writer
@@ -519,6 +601,9 @@ export const messages = $root.messages = (() => {
 
         /**
          * Decodes a Link message from the specified reader or buffer.
+         * @function decode
+         * @memberof messages.Link
+         * @static
          * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
          * @param {number} [length] Message length if known beforehand
          * @returns {messages.Link} Link
@@ -551,6 +636,9 @@ export const messages = $root.messages = (() => {
 
         /**
          * Decodes a Link message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof messages.Link
+         * @static
          * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
          * @returns {messages.Link} Link
          * @throws {Error} If the payload is not a reader or valid buffer
@@ -564,6 +652,9 @@ export const messages = $root.messages = (() => {
 
         /**
          * Verifies a Link message.
+         * @function verify
+         * @memberof messages.Link
+         * @static
          * @param {Object.<string,*>} message Plain object to verify
          * @returns {string|null} `null` if valid, otherwise the reason why it is not
          */
@@ -588,6 +679,9 @@ export const messages = $root.messages = (() => {
 
         /**
          * Creates a Link message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof messages.Link
+         * @static
          * @param {Object.<string,*>} object Plain object
          * @returns {messages.Link} Link
          */
@@ -612,6 +706,9 @@ export const messages = $root.messages = (() => {
 
         /**
          * Creates a plain object from a Link message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof messages.Link
+         * @static
          * @param {messages.Link} message Link
          * @param {$protobuf.IConversionOptions} [options] Conversion options
          * @returns {Object.<string,*>} Plain object
@@ -638,6 +735,9 @@ export const messages = $root.messages = (() => {
 
         /**
          * Converts this Link to JSON.
+         * @function toJSON
+         * @memberof messages.Link
+         * @instance
          * @returns {Object.<string,*>} JSON object
          */
         Link.prototype.toJSON = function toJSON() {

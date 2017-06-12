@@ -236,7 +236,7 @@ export namespace messages {
         public sequenceNumber: number;
 
         /** Link newDevice. */
-        public newDevice: (messages.INewDevice|null);
+        public newDevice?: (messages.INewDevice|null);
 
         /** Link body. */
         public body?: string;
