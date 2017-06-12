@@ -1,6 +1,6 @@
-import { Config } from './state'
+import { Config } from '../state'
 import { get, post } from './http'
-import { NewDevice, Link, ILink, Signed } from './messages'
+import { NewDevice, Link, ILink, Signed } from '../messages'
 
 import { sign } from 'tweetnacl'
 

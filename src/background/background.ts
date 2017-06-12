@@ -1,6 +1,6 @@
 /// <reference path="../../node_modules/@types/chrome/index.d.ts" />
 
-import { getInfo, registerUser } from '../registration'
+import { getInfo, registerUser } from '../api/registration'
 import { loadStore, saveStore, newStore } from '../state'
 
 import '../manifest.json'

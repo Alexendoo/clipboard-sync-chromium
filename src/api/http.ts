@@ -1,4 +1,4 @@
-import { Config } from './state'
+import { Config } from '../state'
 
 export async function get(config: Config, path: string) {
   const target = new URL(path, config.server)
