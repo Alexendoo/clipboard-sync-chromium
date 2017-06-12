@@ -2,14 +2,14 @@ import { sign } from 'tweetnacl'
 
 import { ILink, Link, NewDevice, ServerInfo, Signed } from '../messages'
 import { Config } from '../state'
-import { post } from './http'
+import { HTTPError, post } from './http'
 
-export async function getInfo(server: string) {
+export async function getInfo(server: string): Promise<ServerInfo> {
   const target = new URL('/about', server)
 
   const response = await fetch(target.href)
   if (!response.ok) {
-    throw new TypeError(`Response: ${response.status} ${response.statusText}`)
+    throw new HTTPError(response)
   }
 
   const buffer = await response.arrayBuffer()
@@ -17,7 +17,7 @@ export async function getInfo(server: string) {
   return ServerInfo.decode(new Uint8Array(buffer))
 }
 
-export async function registerUser(config: Config) {
+export async function registerUser(config: Config): Promise<any> {
   const newDevice = new NewDevice({
     FCMToken: 'f',
     name: 'moo',

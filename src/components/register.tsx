@@ -2,11 +2,13 @@ import { Component, h } from 'preact'
 
 import { getInfo } from '../api/registration'
 import { ServerInfo } from '../messages/index'
+import { ErrorView } from './error'
 
 export interface RegisterState {
   value: string
   resolving: boolean
   info?: ServerInfo
+  error?: Error
 }
 
 export class Register extends Component<{}, RegisterState> {
@@ -32,27 +34,41 @@ export class Register extends Component<{}, RegisterState> {
   async handleSubmit(e: Event) {
     e.preventDefault()
 
+    if (this.state.resolving) return
+
     this.setState({
       resolving: true,
     })
-    const info = await getInfo(this.state.value)
-    this.setState({ info })
+
+    try {
+      const info = await getInfo(this.state.value)
+      this.setState({ info })
+    } catch (error) {
+      this.setState({ error })
+    } finally {
+      this.setState({
+        resolving: false,
+      })
+    }
   }
 
   render() {
-    const { info, resolving, value } = this.state
+    const { error, info, resolving, value } = this.state
 
     if (info !== undefined) {
       return <p>{info.senderId}</p>
     }
 
-    if (resolving) {
-      return <div class="resolving">resolving</div>
-    }
-
     return (
       <form onSubmit={this.handleSubmit}>
-        <input type="text" value={value} onChange={this.handleChange} />
+        <ErrorView error={error} />
+        <input
+          autofocus
+          disabled={resolving}
+          onChange={this.handleChange}
+          type="text"
+          value={value}
+        />
       </form>
     )
   }

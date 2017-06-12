@@ -13,12 +13,21 @@ async function http(
     method,
   })
   if (!response.ok) {
-    throw new TypeError(`Response: ${response.status} ${response.statusText}`)
+    throw new HTTPError(response)
   }
 
   const buffer = await response.arrayBuffer()
 
   return new Uint8Array(buffer)
+}
+
+export class HTTPError extends Error {
+  response: Response
+  constructor(response: Response) {
+    super(`Response: ${response.status} ${response.statusText}`)
+
+    this.response = response
+  }
 }
 
 export async function get(config: Config, path: string) {
