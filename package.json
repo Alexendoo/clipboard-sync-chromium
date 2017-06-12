@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "scripts": {
     "build": "webpack",
+    "build:watch": "webpack -w",
     "proto": "pbjs -t static-module -w es6 -o src/messages/index.js src/messages/sigchain.proto && pbts -o src/messages/index.d.ts src/messages/index.js"
   },
   "repository": {
@@ -16,8 +17,6 @@
   },
   "homepage": "https://github.com/Alexendoo/clipboard-sync-chromium#readme",
   "devDependencies": {
-    "@stablelib/base64": "^0.7.2",
-    "@stablelib/utf8": "^0.8.1",
     "@types/chrome": "^0.0.46",
     "file-loader": "^0.11.1",
     "idb": "^2.0.3",
@@ -28,7 +27,6 @@
     "redux": "^3.6.0",
     "rimraf": "^2.6.1",
     "ts-loader": "^2.1.0",
-    "tslint": "^5.3.2",
     "tweetnacl": "^1.0.0",
     "typescript": "^2.3.2",
     "webpack": "^2.6.0"

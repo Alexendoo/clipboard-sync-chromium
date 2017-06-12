@@ -3,8 +3,6 @@ import { get, post } from './http'
 import { messages } from './messages'
 
 import { sign } from 'tweetnacl'
-import { encode as encodeUTF8 } from '@stablelib/utf8'
-import { encode as encodeBase64 } from '@stablelib/base64'
 
 export async function getInfo(config: Config) {
   const json = await get(config, '/about')

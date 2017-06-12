@@ -1,24 +1,36 @@
 import { Component, h } from 'preact'
 
 export interface RegisterState {
-  input: string
+  value: string
+  resolving: boolean
 }
 
 export class Register extends Component<{}, RegisterState> {
   constructor() {
     super()
 
+    this.state = {
+      value: '',
+      resolving: false,
+    }
+
     this.input = this.input.bind(this)
   }
 
-  input(e: Event) {
+  input(e: KeyboardEvent) {
     const input = e.target as HTMLInputElement
     this.setState({
-      input: input.value,
+      value: input.value,
     })
+    if (e.key === 'Enter') {
+      this.setState({
+        resolving: true,
+      })
+    }
   }
 
   render() {
-    return <input type="text" onInput={this.input} />
+    console.log('render')
+    return <input type="text" onKeyDown={this.input} />
   }
 }

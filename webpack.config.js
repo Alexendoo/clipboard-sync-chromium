@@ -5,8 +5,8 @@ rimraf.sync('dist')
 
 module.exports = {
   entry: {
-    background: './background/background.ts',
-    popup: './popup/popup.tsx',
+    background: './src/background/background.ts',
+    popup: './src/popup/popup.tsx',
   },
 
   output: {
@@ -34,8 +34,6 @@ module.exports = {
       },
     ],
   },
-
-  context: path.resolve(__dirname, 'src'),
 
   devtool: 'source-map',
 }

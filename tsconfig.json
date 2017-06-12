@@ -4,6 +4,8 @@
     "jsxFactory": "h",
     "module": "es2015",
     "moduleResolution": "node",
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
     "sourceMap": true,
     "strict": true,
     "target": "es2017"

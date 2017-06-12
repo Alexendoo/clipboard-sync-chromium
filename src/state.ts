@@ -1,12 +1,10 @@
 import { box, sign } from 'tweetnacl'
-import { createStore, Store, Action, combineReducers } from 'redux'
+import { createStore, Store } from 'redux'
 import idb, { UpgradeDB } from 'idb'
 
 export interface State {
   config: Config
 }
-
-type Stringify<T> = { [K in keyof T]: string }
 
 export interface Config {
   curve25519: nacl.BoxKeyPair
@@ -14,7 +12,7 @@ export interface Config {
   server: string
 }
 
-function reducer(state: State, action: any): State {
+function reducer(state: State): State {
   return state
 }
 
