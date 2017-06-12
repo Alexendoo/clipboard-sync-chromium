@@ -23,11 +23,11 @@ export class Register extends Component<{}, RegisterState> {
       value: input.value,
     })
     if (e.key === 'Enter') {
-      this.setState({
-        resolving: true,
-      })
+      this.resolve()
     }
   }
+
+  async resolve() {}
 
   render() {
     console.log('render')

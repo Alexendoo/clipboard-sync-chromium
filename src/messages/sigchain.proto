@@ -1,4 +1,10 @@
 syntax = "proto3";
+option go_package = "messages";
+
+message ServerInfo {
+  string version = 1;
+  string sender_id = 2;
+}
 
 message Signed {
   bytes body = 1;

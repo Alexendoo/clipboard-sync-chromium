@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "scripts": {
     "build": "webpack",
-    "build:w": "webpack -w",
+    "watch": "webpack -w",
     "proto": "pbjs -t static-module -w es6 -o src/messages/index.js src/messages/sigchain.proto && pbts -o src/messages/index.d.ts src/messages/index.js"
   },
   "repository": {

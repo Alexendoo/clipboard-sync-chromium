@@ -1,12 +1,20 @@
-import { Config } from '../state'
-import { get, post } from './http'
-import { NewDevice, Link, ILink, Signed } from '../messages'
-
 import { sign } from 'tweetnacl'
 
-export async function getInfo(config: Config) {
-  const json = await get(config, '/about')
-  console.log(json)
+import { ILink, Link, NewDevice, ServerInfo, Signed } from '../messages'
+import { Config } from '../state'
+import { post } from './http'
+
+export async function getInfo(server: string) {
+  const target = new URL('/about', server)
+
+  const response = await fetch(target.href)
+  if (!response.ok) {
+    throw new TypeError(`Response: ${response.status} ${response.statusText}`)
+  }
+
+  const buffer = await response.arrayBuffer()
+
+  return ServerInfo.decode(new Uint8Array(buffer))
 }
 
 export async function registerUser(config: Config) {

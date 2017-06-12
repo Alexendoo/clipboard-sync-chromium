@@ -1,5 +1,101 @@
 import * as $protobuf from "protobufjs";
 
+/** Properties of a ServerInfo. */
+export interface IServerInfo {
+
+    /** ServerInfo version */
+    version?: string;
+
+    /** ServerInfo senderId */
+    senderId?: string;
+}
+
+/** Represents a ServerInfo. */
+export class ServerInfo {
+
+    /**
+     * Constructs a new ServerInfo.
+     * @param [properties] Properties to set
+     */
+    constructor(properties?: IServerInfo);
+
+    /** ServerInfo version. */
+    public version: string;
+
+    /** ServerInfo senderId. */
+    public senderId: string;
+
+    /**
+     * Creates a new ServerInfo instance using the specified properties.
+     * @param [properties] Properties to set
+     * @returns ServerInfo instance
+     */
+    public static create(properties?: IServerInfo): ServerInfo;
+
+    /**
+     * Encodes the specified ServerInfo message. Does not implicitly {@link ServerInfo.verify|verify} messages.
+     * @param message ServerInfo message or plain object to encode
+     * @param [writer] Writer to encode to
+     * @returns Writer
+     */
+    public static encode(message: IServerInfo, writer?: $protobuf.Writer): $protobuf.Writer;
+
+    /**
+     * Encodes the specified ServerInfo message, length delimited. Does not implicitly {@link ServerInfo.verify|verify} messages.
+     * @param message ServerInfo message or plain object to encode
+     * @param [writer] Writer to encode to
+     * @returns Writer
+     */
+    public static encodeDelimited(message: IServerInfo, writer?: $protobuf.Writer): $protobuf.Writer;
+
+    /**
+     * Decodes a ServerInfo message from the specified reader or buffer.
+     * @param reader Reader or buffer to decode from
+     * @param [length] Message length if known beforehand
+     * @returns ServerInfo
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): ServerInfo;
+
+    /**
+     * Decodes a ServerInfo message from the specified reader or buffer, length delimited.
+     * @param reader Reader or buffer to decode from
+     * @returns ServerInfo
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): ServerInfo;
+
+    /**
+     * Verifies a ServerInfo message.
+     * @param message Plain object to verify
+     * @returns `null` if valid, otherwise the reason why it is not
+     */
+    public static verify(message: { [k: string]: any }): (string|null);
+
+    /**
+     * Creates a ServerInfo message from a plain object. Also converts values to their respective internal types.
+     * @param object Plain object
+     * @returns ServerInfo
+     */
+    public static fromObject(object: { [k: string]: any }): ServerInfo;
+
+    /**
+     * Creates a plain object from a ServerInfo message. Also converts values to other types if specified.
+     * @param message ServerInfo
+     * @param [options] Conversion options
+     * @returns Plain object
+     */
+    public static toObject(message: ServerInfo, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+    /**
+     * Converts this ServerInfo to JSON.
+     * @returns JSON object
+     */
+    public toJSON(): { [k: string]: any };
+}
+
 /** Properties of a Signed. */
 export interface ISigned {
 

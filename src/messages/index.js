@@ -7,6 +7,215 @@ const $Reader = $protobuf.Reader, $Writer = $protobuf.Writer, $util = $protobuf.
 // Exported root namespace
 const $root = $protobuf.roots["default"] || ($protobuf.roots["default"] = {});
 
+export const ServerInfo = $root.ServerInfo = (() => {
+
+    /**
+     * Properties of a ServerInfo.
+     * @exports IServerInfo
+     * @interface IServerInfo
+     * @property {string} [version] ServerInfo version
+     * @property {string} [senderId] ServerInfo senderId
+     */
+
+    /**
+     * Constructs a new ServerInfo.
+     * @exports ServerInfo
+     * @classdesc Represents a ServerInfo.
+     * @constructor
+     * @param {IServerInfo=} [properties] Properties to set
+     */
+    function ServerInfo(properties) {
+        if (properties)
+            for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                if (properties[keys[i]] != null)
+                    this[keys[i]] = properties[keys[i]];
+    }
+
+    /**
+     * ServerInfo version.
+     * @member {string}version
+     * @memberof ServerInfo
+     * @instance
+     */
+    ServerInfo.prototype.version = "";
+
+    /**
+     * ServerInfo senderId.
+     * @member {string}senderId
+     * @memberof ServerInfo
+     * @instance
+     */
+    ServerInfo.prototype.senderId = "";
+
+    /**
+     * Creates a new ServerInfo instance using the specified properties.
+     * @function create
+     * @memberof ServerInfo
+     * @static
+     * @param {IServerInfo=} [properties] Properties to set
+     * @returns {ServerInfo} ServerInfo instance
+     */
+    ServerInfo.create = function create(properties) {
+        return new ServerInfo(properties);
+    };
+
+    /**
+     * Encodes the specified ServerInfo message. Does not implicitly {@link ServerInfo.verify|verify} messages.
+     * @function encode
+     * @memberof ServerInfo
+     * @static
+     * @param {IServerInfo} message ServerInfo message or plain object to encode
+     * @param {$protobuf.Writer} [writer] Writer to encode to
+     * @returns {$protobuf.Writer} Writer
+     */
+    ServerInfo.encode = function encode(message, writer) {
+        if (!writer)
+            writer = $Writer.create();
+        if (message.version != null && message.hasOwnProperty("version"))
+            writer.uint32(/* id 1, wireType 2 =*/10).string(message.version);
+        if (message.senderId != null && message.hasOwnProperty("senderId"))
+            writer.uint32(/* id 2, wireType 2 =*/18).string(message.senderId);
+        return writer;
+    };
+
+    /**
+     * Encodes the specified ServerInfo message, length delimited. Does not implicitly {@link ServerInfo.verify|verify} messages.
+     * @function encodeDelimited
+     * @memberof ServerInfo
+     * @static
+     * @param {IServerInfo} message ServerInfo message or plain object to encode
+     * @param {$protobuf.Writer} [writer] Writer to encode to
+     * @returns {$protobuf.Writer} Writer
+     */
+    ServerInfo.encodeDelimited = function encodeDelimited(message, writer) {
+        return this.encode(message, writer).ldelim();
+    };
+
+    /**
+     * Decodes a ServerInfo message from the specified reader or buffer.
+     * @function decode
+     * @memberof ServerInfo
+     * @static
+     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+     * @param {number} [length] Message length if known beforehand
+     * @returns {ServerInfo} ServerInfo
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    ServerInfo.decode = function decode(reader, length) {
+        if (!(reader instanceof $Reader))
+            reader = $Reader.create(reader);
+        let end = length === undefined ? reader.len : reader.pos + length, message = new $root.ServerInfo();
+        while (reader.pos < end) {
+            let tag = reader.uint32();
+            switch (tag >>> 3) {
+            case 1:
+                message.version = reader.string();
+                break;
+            case 2:
+                message.senderId = reader.string();
+                break;
+            default:
+                reader.skipType(tag & 7);
+                break;
+            }
+        }
+        return message;
+    };
+
+    /**
+     * Decodes a ServerInfo message from the specified reader or buffer, length delimited.
+     * @function decodeDelimited
+     * @memberof ServerInfo
+     * @static
+     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+     * @returns {ServerInfo} ServerInfo
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    ServerInfo.decodeDelimited = function decodeDelimited(reader) {
+        if (!(reader instanceof $Reader))
+            reader = new $Reader(reader);
+        return this.decode(reader, reader.uint32());
+    };
+
+    /**
+     * Verifies a ServerInfo message.
+     * @function verify
+     * @memberof ServerInfo
+     * @static
+     * @param {Object.<string,*>} message Plain object to verify
+     * @returns {string|null} `null` if valid, otherwise the reason why it is not
+     */
+    ServerInfo.verify = function verify(message) {
+        if (typeof message !== "object" || message === null)
+            return "object expected";
+        if (message.version != null && message.hasOwnProperty("version"))
+            if (!$util.isString(message.version))
+                return "version: string expected";
+        if (message.senderId != null && message.hasOwnProperty("senderId"))
+            if (!$util.isString(message.senderId))
+                return "senderId: string expected";
+        return null;
+    };
+
+    /**
+     * Creates a ServerInfo message from a plain object. Also converts values to their respective internal types.
+     * @function fromObject
+     * @memberof ServerInfo
+     * @static
+     * @param {Object.<string,*>} object Plain object
+     * @returns {ServerInfo} ServerInfo
+     */
+    ServerInfo.fromObject = function fromObject(object) {
+        if (object instanceof $root.ServerInfo)
+            return object;
+        let message = new $root.ServerInfo();
+        if (object.version != null)
+            message.version = String(object.version);
+        if (object.senderId != null)
+            message.senderId = String(object.senderId);
+        return message;
+    };
+
+    /**
+     * Creates a plain object from a ServerInfo message. Also converts values to other types if specified.
+     * @function toObject
+     * @memberof ServerInfo
+     * @static
+     * @param {ServerInfo} message ServerInfo
+     * @param {$protobuf.IConversionOptions} [options] Conversion options
+     * @returns {Object.<string,*>} Plain object
+     */
+    ServerInfo.toObject = function toObject(message, options) {
+        if (!options)
+            options = {};
+        let object = {};
+        if (options.defaults) {
+            object.version = "";
+            object.senderId = "";
+        }
+        if (message.version != null && message.hasOwnProperty("version"))
+            object.version = message.version;
+        if (message.senderId != null && message.hasOwnProperty("senderId"))
+            object.senderId = message.senderId;
+        return object;
+    };
+
+    /**
+     * Converts this ServerInfo to JSON.
+     * @function toJSON
+     * @memberof ServerInfo
+     * @instance
+     * @returns {Object.<string,*>} JSON object
+     */
+    ServerInfo.prototype.toJSON = function toJSON() {
+        return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+    };
+
+    return ServerInfo;
+})();
+
 export const Signed = $root.Signed = (() => {
 
     /**
