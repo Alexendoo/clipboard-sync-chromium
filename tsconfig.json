@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "forceConsistentCasingInFileNames": true,
     "jsx": "react",
     "jsxFactory": "h",
     "module": "es2015",

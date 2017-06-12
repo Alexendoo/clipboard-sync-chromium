@@ -1,7 +1,7 @@
 /// <reference path="../../node_modules/@types/chrome/index.d.ts" />
 
 import { getInfo, registerUser } from '../api/registration'
-import { loadStore, saveStore, newStore } from '../state'
+import { loadStore, newStore, saveStore } from '../state'
 
 import '../manifest.json'
 import './background.html'

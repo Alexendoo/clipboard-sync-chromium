@@ -1,6 +1,6 @@
-import { box, sign } from 'tweetnacl'
-import { createStore, Store } from 'redux'
 import idb, { UpgradeDB } from 'idb'
+import { createStore, Store } from 'redux'
+import { box, sign } from 'tweetnacl'
 
 export interface State {
   config: Config

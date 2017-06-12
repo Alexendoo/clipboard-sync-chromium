@@ -1,7 +1,7 @@
 import { h, render } from 'preact'
 
-import { Register } from '../components/register'
 import { Pending } from '../components/pending'
+import { Register } from '../components/register'
 
 import './popup.html'
 
