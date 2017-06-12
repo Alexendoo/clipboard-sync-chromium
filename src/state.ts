@@ -3,13 +3,13 @@ import { createStore, Store } from 'redux'
 import { box, sign } from 'tweetnacl'
 
 export interface State {
-  config: Config
+  readonly config: Config
 }
 
 export interface Config {
-  curve25519: nacl.BoxKeyPair
-  ed25519: nacl.SignKeyPair
-  server: string
+  readonly curve25519: Readonly<nacl.BoxKeyPair>
+  readonly ed25519: Readonly<nacl.SignKeyPair>
+  readonly server: string
 }
 
 function reducer(state: State): State {
