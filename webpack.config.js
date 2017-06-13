@@ -1,5 +1,6 @@
 const path = require('path')
 const rimraf = require('rimraf')
+const webpack = require('webpack')
 
 rimraf.sync('dist')
 
@@ -35,5 +36,10 @@ module.exports = {
     ],
   },
 
+  plugins: [
+    new webpack.optimize.CommonsChunkPlugin({
+      name: 'common',
+    }),
+  ],
   devtool: 'source-map',
 }
