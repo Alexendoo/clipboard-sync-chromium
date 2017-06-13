@@ -10,10 +10,12 @@ export interface State {
 export interface Config {
   readonly curve25519: Readonly<nacl.BoxKeyPair>
   readonly ed25519: Readonly<nacl.SignKeyPair>
-  readonly server: {
-    readonly href: string
-    readonly info: IServerInfo
-  }
+  readonly server: ServerConfig
+}
+
+export interface ServerConfig {
+  readonly href: string
+  readonly info: IServerInfo
 }
 
 function reducer(state: State): State {

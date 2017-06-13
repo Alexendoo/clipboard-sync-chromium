@@ -2,13 +2,14 @@ import { Component, h } from 'preact'
 import { Store } from 'redux'
 
 import { getInfo } from '../api/registration'
-import { newStore, State } from '../state'
+import { ServerConfig, State } from '../state'
 import { ErrorView } from './error'
 
 export interface RegisterState {
-  value: string
-  resolving: boolean
+  config?: ServerConfig
   error?: Error
+  resolving: boolean
+  value: string
 }
 
 export interface RegisterProps {
@@ -46,8 +47,12 @@ export class Register extends Component<RegisterProps, RegisterState> {
 
     try {
       const info = await getInfo(this.state.value)
-      const store = newStore(this.state.value, info)
-      this.props.onStore(store)
+      this.setState({
+        config: {
+          info,
+          href: this.state.value,
+        },
+      })
     } catch (error) {
       this.setState({
         error,
@@ -57,6 +62,10 @@ export class Register extends Component<RegisterProps, RegisterState> {
   }
 
   render() {
+    if (this.state.config !== undefined) {
+      return <div>done</div>
+    }
+
     return (
       <form onSubmit={this.handleSubmit}>
         <ErrorView error={this.state.error} />
@@ -71,3 +80,5 @@ export class Register extends Component<RegisterProps, RegisterState> {
     )
   }
 }
+
+// TODO: negotiate registration with remote device
