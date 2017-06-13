@@ -6,7 +6,7 @@ async function http(
   method: 'GET' | 'POST',
   body?: Uint8Array,
 ) {
-  const target = new URL(path, config.server)
+  const target = new URL(path, config.server.href)
 
   const response = await fetch(target.href, {
     body,

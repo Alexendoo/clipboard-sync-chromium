@@ -1,17 +1,21 @@
 import { Component, h } from 'preact'
+import { Store } from 'redux'
 
 import { getInfo } from '../api/registration'
-import { ServerInfo } from '../messages/index'
+import { newStore, State } from '../state'
 import { ErrorView } from './error'
 
 export interface RegisterState {
   value: string
   resolving: boolean
-  info?: ServerInfo
   error?: Error
 }
 
-export class Register extends Component<{}, RegisterState> {
+export interface RegisterProps {
+  onStore: (store: Store<State>) => void
+}
+
+export class Register extends Component<RegisterProps, RegisterState> {
   constructor() {
     super()
 
@@ -42,32 +46,26 @@ export class Register extends Component<{}, RegisterState> {
 
     try {
       const info = await getInfo(this.state.value)
-      this.setState({ info })
+      const store = newStore(this.state.value, info)
+      this.props.onStore(store)
     } catch (error) {
-      this.setState({ error })
-    } finally {
       this.setState({
+        error,
         resolving: false,
       })
     }
   }
 
   render() {
-    const { error, info, resolving, value } = this.state
-
-    if (info !== undefined) {
-      return <p>{info.senderId}</p>
-    }
-
     return (
       <form onSubmit={this.handleSubmit}>
-        <ErrorView error={error} />
+        <ErrorView error={this.state.error} />
         <input
           autofocus
-          disabled={resolving}
+          disabled={this.state.resolving}
           onChange={this.handleChange}
           type="text"
-          value={value}
+          value={this.state.value}
         />
       </form>
     )

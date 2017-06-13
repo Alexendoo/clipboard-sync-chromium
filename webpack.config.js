@@ -41,5 +41,6 @@ module.exports = {
       name: 'common',
     }),
   ],
+
   devtool: 'source-map',
 }

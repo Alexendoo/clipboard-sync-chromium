@@ -1,6 +1,7 @@
 import idb, { UpgradeDB } from 'idb'
 import { createStore, Store } from 'redux'
 import { box, sign } from 'tweetnacl'
+import { IServerInfo } from './messages/index'
 
 export interface State {
   readonly config: Config
@@ -9,7 +10,10 @@ export interface State {
 export interface Config {
   readonly curve25519: Readonly<nacl.BoxKeyPair>
   readonly ed25519: Readonly<nacl.SignKeyPair>
-  readonly server: string
+  readonly server: {
+    readonly href: string
+    readonly info: IServerInfo
+  }
 }
 
 function reducer(state: State): State {
@@ -27,12 +31,15 @@ function getDB() {
   return idb.open('state', 1, upgradeDB)
 }
 
-export function newStore(server: string): Store<State> {
+export function newStore(href: string, info: IServerInfo): Store<State> {
   const state = {
     config: {
       curve25519: box.keyPair(),
       ed25519: sign.keyPair(),
-      server,
+      server: {
+        href,
+        info,
+      },
     },
   }
 

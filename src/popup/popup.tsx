@@ -9,7 +9,7 @@ render(
   <Pending
     component={Promise.reject(null)}
     loading={<div class="loading" />}
-    fallback={<Register />}
+    fallback={<Register onStore={console.log} />}
   />,
   document.body,
 )
