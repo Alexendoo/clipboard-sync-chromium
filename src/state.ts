@@ -33,15 +33,12 @@ function getDB() {
   return idb.open('state', 1, upgradeDB)
 }
 
-export function newStore(href: string, info: IServerInfo): Store<State> {
+export function newStore(serverConfig: ServerConfig): Store<State> {
   const state = {
     config: {
       curve25519: box.keyPair(),
       ed25519: sign.keyPair(),
-      server: {
-        href,
-        info,
-      },
+      server: serverConfig,
     },
   }
 
