@@ -1,7 +1,7 @@
 import { Component, h } from 'preact'
 
 import { getInfo, registerUser } from '../api/registration'
-import { newStore, ServerConfig, saveStore } from '../state'
+import { newStore, saveStore, ServerConfig } from '../state'
 import { assertNever } from '../util'
 import { ErrorView } from './error'
 

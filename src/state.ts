@@ -1,6 +1,7 @@
 import idb, { UpgradeDB } from 'idb'
 import { createStore, Store } from 'redux'
 import { box, sign } from 'tweetnacl'
+
 import { IServerInfo } from './messages/index'
 
 export interface State {
