@@ -1,3 +1,4 @@
+import createHistory from 'history/createHashHistory'
 import { h, render } from 'preact'
 import { Provider } from 'preact-redux'
 import { Route, Router } from 'preact-router'
@@ -13,18 +14,11 @@ async function main(): Promise<JSX.Element> {
   const store = await loadStore()
   return (
     <Provider store={store}>
-      <Router>
+      <Router history={createHistory()}>
         <Route default component={Home} />
       </Router>
     </Provider>
   )
 }
 
-render(
-  <Pending
-    component={main()}
-    loading={<div class="loading" />}
-    fallback={<Register />}
-  />,
-  document.body,
-)
+render(<Pending component={main()} fallback={<Register />} />, document.body)

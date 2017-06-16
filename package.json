@@ -18,7 +18,9 @@
   "homepage": "https://github.com/Alexendoo/clipboard-sync-chromium#readme",
   "devDependencies": {
     "@types/chrome": "^0.0.46",
+    "@types/history": "^4.5.2",
     "file-loader": "^0.11.1",
+    "history": "^4.6.2",
     "idb": "^2.0.3",
     "preact": "^8.1.0",
     "preact-redux": "^2.0.1",

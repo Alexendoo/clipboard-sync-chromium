@@ -1,3 +1,4 @@
+// awaiting new preact-router npm version
 declare module 'preact-router' {
   import * as preact from 'preact'
 
@@ -6,17 +7,21 @@ declare module 'preact-router' {
 
   export function getCurrentUrl(): string
 
-  export interface CustomHistory {
-    getCurrentLocation?: () => string
-    location?: string
-    listen(callback: (url: string) => void): () => void
-    push?: (url: string) => void
-    replace?: (url: string) => void
-  }
-
   export interface RoutableProps {
     path?: string
     default?: boolean
+  }
+
+  export interface Location {
+    pathname: string
+    search: string
+  }
+
+  export interface CustomHistory {
+    listen(callback: (location: Location) => void): () => void
+    location: Location
+    push(path: string): void
+    replace(path: string): void
   }
 
   export interface RouterProps extends RoutableProps {

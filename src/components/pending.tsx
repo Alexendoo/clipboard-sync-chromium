@@ -1,4 +1,4 @@
-import { Component } from 'preact'
+import { Component, h } from 'preact'
 
 import { assertNever } from '../util'
 
@@ -10,7 +10,7 @@ const enum Status {
 
 export interface PendingProps {
   component: Promise<JSX.Element>
-  loading: JSX.Element
+  loading?: JSX.Element
   fallback: JSX.Element
 }
 
@@ -46,7 +46,7 @@ export class Pending extends Component<PendingProps, PendingState> {
         return state.result!
 
       case Status.Loading:
-        return props.loading
+        return props.loading || <div class="pending" />
 
       case Status.NotFound:
         return props.fallback
