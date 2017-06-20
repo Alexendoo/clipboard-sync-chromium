@@ -1,6 +1,5 @@
-import { util } from 'protobufjs'
-import { secretbox, sign } from 'tweetnacl'
-import { Boxed, ILink, Link, NewDevice, ServerInfo, Signed } from '../messages'
+import { sign } from 'tweetnacl'
+import { ILink, Link, NewDevice, ServerInfo, Signed } from '../messages'
 import { Config } from '../state'
 import { HTTPError, post } from './http'
 import { WebSocketStream } from './websocket'
@@ -59,46 +58,6 @@ export async function login(config: Config, secret: string) {
     publicKey: config.ed25519.publicKey,
   })
   ws.send(NewDevice.encode(newDevice).finish())
-}
-
-async function pbkdf2(string: string) {
-  const buffer = new Uint8Array(util.utf8.length(string))
-  util.utf8.write(string, buffer, 0)
-
-  const key = await crypto.subtle.importKey(
-    'raw',
-    buffer,
-    { name: 'PBKDF2' },
-    false,
-    ['deriveKey'],
-  )
-
-  const derived = await crypto.subtle.deriveKey(
-    {
-      name: 'PBKDF2',
-      salt: new ArrayBuffer(0),
-      iterations: 10000,
-      hash: 'SHA-256',
-    },
-    key,
-    /* does nothing */ { name: 'AES-CBC', length: 256 },
-    true,
-    ['encrypt'],
-  )
-
-  return crypto.subtle.exportKey('raw', derived)
-}
-
-function box(message: Uint8Array, key: Uint8Array) {
-  const nonce = new Uint8Array(secretbox.nonceLength)
-  crypto.getRandomValues(nonce)
-
-  const boxed = new Boxed({
-    body: secretbox(message, nonce, key),
-    nonce,
-  })
-
-  return Boxed.encode(boxed).finish()
 }
 
 window.login = login
