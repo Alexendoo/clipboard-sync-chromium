@@ -404,3 +404,99 @@ export class Link {
      */
     public toJSON(): { [k: string]: any };
 }
+
+/** Properties of a Boxed. */
+export interface IBoxed {
+
+    /** Boxed body */
+    body?: Uint8Array;
+
+    /** Boxed nonce */
+    nonce?: Uint8Array;
+}
+
+/** Represents a Boxed. */
+export class Boxed {
+
+    /**
+     * Constructs a new Boxed.
+     * @param [properties] Properties to set
+     */
+    constructor(properties?: IBoxed);
+
+    /** Boxed body. */
+    public body: Uint8Array;
+
+    /** Boxed nonce. */
+    public nonce: Uint8Array;
+
+    /**
+     * Creates a new Boxed instance using the specified properties.
+     * @param [properties] Properties to set
+     * @returns Boxed instance
+     */
+    public static create(properties?: IBoxed): Boxed;
+
+    /**
+     * Encodes the specified Boxed message. Does not implicitly {@link Boxed.verify|verify} messages.
+     * @param message Boxed message or plain object to encode
+     * @param [writer] Writer to encode to
+     * @returns Writer
+     */
+    public static encode(message: IBoxed, writer?: $protobuf.Writer): $protobuf.Writer;
+
+    /**
+     * Encodes the specified Boxed message, length delimited. Does not implicitly {@link Boxed.verify|verify} messages.
+     * @param message Boxed message or plain object to encode
+     * @param [writer] Writer to encode to
+     * @returns Writer
+     */
+    public static encodeDelimited(message: IBoxed, writer?: $protobuf.Writer): $protobuf.Writer;
+
+    /**
+     * Decodes a Boxed message from the specified reader or buffer.
+     * @param reader Reader or buffer to decode from
+     * @param [length] Message length if known beforehand
+     * @returns Boxed
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): Boxed;
+
+    /**
+     * Decodes a Boxed message from the specified reader or buffer, length delimited.
+     * @param reader Reader or buffer to decode from
+     * @returns Boxed
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): Boxed;
+
+    /**
+     * Verifies a Boxed message.
+     * @param message Plain object to verify
+     * @returns `null` if valid, otherwise the reason why it is not
+     */
+    public static verify(message: { [k: string]: any }): (string|null);
+
+    /**
+     * Creates a Boxed message from a plain object. Also converts values to their respective internal types.
+     * @param object Plain object
+     * @returns Boxed
+     */
+    public static fromObject(object: { [k: string]: any }): Boxed;
+
+    /**
+     * Creates a plain object from a Boxed message. Also converts values to other types if specified.
+     * @param message Boxed
+     * @param [options] Conversion options
+     * @returns Plain object
+     */
+    public static toObject(message: Boxed, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+    /**
+     * Converts this Boxed to JSON.
+     * @returns JSON object
+     */
+    public toJSON(): { [k: string]: any };
+}

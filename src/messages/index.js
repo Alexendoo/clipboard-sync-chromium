@@ -947,4 +947,219 @@ export const Link = $root.Link = (() => {
     return Link;
 })();
 
+export const Boxed = $root.Boxed = (() => {
+
+    /**
+     * Properties of a Boxed.
+     * @exports IBoxed
+     * @interface IBoxed
+     * @property {Uint8Array} [body] Boxed body
+     * @property {Uint8Array} [nonce] Boxed nonce
+     */
+
+    /**
+     * Constructs a new Boxed.
+     * @exports Boxed
+     * @classdesc Represents a Boxed.
+     * @constructor
+     * @param {IBoxed=} [properties] Properties to set
+     */
+    function Boxed(properties) {
+        if (properties)
+            for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                if (properties[keys[i]] != null)
+                    this[keys[i]] = properties[keys[i]];
+    }
+
+    /**
+     * Boxed body.
+     * @member {Uint8Array}body
+     * @memberof Boxed
+     * @instance
+     */
+    Boxed.prototype.body = $util.newBuffer([]);
+
+    /**
+     * Boxed nonce.
+     * @member {Uint8Array}nonce
+     * @memberof Boxed
+     * @instance
+     */
+    Boxed.prototype.nonce = $util.newBuffer([]);
+
+    /**
+     * Creates a new Boxed instance using the specified properties.
+     * @function create
+     * @memberof Boxed
+     * @static
+     * @param {IBoxed=} [properties] Properties to set
+     * @returns {Boxed} Boxed instance
+     */
+    Boxed.create = function create(properties) {
+        return new Boxed(properties);
+    };
+
+    /**
+     * Encodes the specified Boxed message. Does not implicitly {@link Boxed.verify|verify} messages.
+     * @function encode
+     * @memberof Boxed
+     * @static
+     * @param {IBoxed} message Boxed message or plain object to encode
+     * @param {$protobuf.Writer} [writer] Writer to encode to
+     * @returns {$protobuf.Writer} Writer
+     */
+    Boxed.encode = function encode(message, writer) {
+        if (!writer)
+            writer = $Writer.create();
+        if (message.body != null && message.hasOwnProperty("body"))
+            writer.uint32(/* id 1, wireType 2 =*/10).bytes(message.body);
+        if (message.nonce != null && message.hasOwnProperty("nonce"))
+            writer.uint32(/* id 2, wireType 2 =*/18).bytes(message.nonce);
+        return writer;
+    };
+
+    /**
+     * Encodes the specified Boxed message, length delimited. Does not implicitly {@link Boxed.verify|verify} messages.
+     * @function encodeDelimited
+     * @memberof Boxed
+     * @static
+     * @param {IBoxed} message Boxed message or plain object to encode
+     * @param {$protobuf.Writer} [writer] Writer to encode to
+     * @returns {$protobuf.Writer} Writer
+     */
+    Boxed.encodeDelimited = function encodeDelimited(message, writer) {
+        return this.encode(message, writer).ldelim();
+    };
+
+    /**
+     * Decodes a Boxed message from the specified reader or buffer.
+     * @function decode
+     * @memberof Boxed
+     * @static
+     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+     * @param {number} [length] Message length if known beforehand
+     * @returns {Boxed} Boxed
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    Boxed.decode = function decode(reader, length) {
+        if (!(reader instanceof $Reader))
+            reader = $Reader.create(reader);
+        let end = length === undefined ? reader.len : reader.pos + length, message = new $root.Boxed();
+        while (reader.pos < end) {
+            let tag = reader.uint32();
+            switch (tag >>> 3) {
+            case 1:
+                message.body = reader.bytes();
+                break;
+            case 2:
+                message.nonce = reader.bytes();
+                break;
+            default:
+                reader.skipType(tag & 7);
+                break;
+            }
+        }
+        return message;
+    };
+
+    /**
+     * Decodes a Boxed message from the specified reader or buffer, length delimited.
+     * @function decodeDelimited
+     * @memberof Boxed
+     * @static
+     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+     * @returns {Boxed} Boxed
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    Boxed.decodeDelimited = function decodeDelimited(reader) {
+        if (!(reader instanceof $Reader))
+            reader = new $Reader(reader);
+        return this.decode(reader, reader.uint32());
+    };
+
+    /**
+     * Verifies a Boxed message.
+     * @function verify
+     * @memberof Boxed
+     * @static
+     * @param {Object.<string,*>} message Plain object to verify
+     * @returns {string|null} `null` if valid, otherwise the reason why it is not
+     */
+    Boxed.verify = function verify(message) {
+        if (typeof message !== "object" || message === null)
+            return "object expected";
+        if (message.body != null && message.hasOwnProperty("body"))
+            if (!(message.body && typeof message.body.length === "number" || $util.isString(message.body)))
+                return "body: buffer expected";
+        if (message.nonce != null && message.hasOwnProperty("nonce"))
+            if (!(message.nonce && typeof message.nonce.length === "number" || $util.isString(message.nonce)))
+                return "nonce: buffer expected";
+        return null;
+    };
+
+    /**
+     * Creates a Boxed message from a plain object. Also converts values to their respective internal types.
+     * @function fromObject
+     * @memberof Boxed
+     * @static
+     * @param {Object.<string,*>} object Plain object
+     * @returns {Boxed} Boxed
+     */
+    Boxed.fromObject = function fromObject(object) {
+        if (object instanceof $root.Boxed)
+            return object;
+        let message = new $root.Boxed();
+        if (object.body != null)
+            if (typeof object.body === "string")
+                $util.base64.decode(object.body, message.body = $util.newBuffer($util.base64.length(object.body)), 0);
+            else if (object.body.length)
+                message.body = object.body;
+        if (object.nonce != null)
+            if (typeof object.nonce === "string")
+                $util.base64.decode(object.nonce, message.nonce = $util.newBuffer($util.base64.length(object.nonce)), 0);
+            else if (object.nonce.length)
+                message.nonce = object.nonce;
+        return message;
+    };
+
+    /**
+     * Creates a plain object from a Boxed message. Also converts values to other types if specified.
+     * @function toObject
+     * @memberof Boxed
+     * @static
+     * @param {Boxed} message Boxed
+     * @param {$protobuf.IConversionOptions} [options] Conversion options
+     * @returns {Object.<string,*>} Plain object
+     */
+    Boxed.toObject = function toObject(message, options) {
+        if (!options)
+            options = {};
+        let object = {};
+        if (options.defaults) {
+            object.body = options.bytes === String ? "" : [];
+            object.nonce = options.bytes === String ? "" : [];
+        }
+        if (message.body != null && message.hasOwnProperty("body"))
+            object.body = options.bytes === String ? $util.base64.encode(message.body, 0, message.body.length) : options.bytes === Array ? Array.prototype.slice.call(message.body) : message.body;
+        if (message.nonce != null && message.hasOwnProperty("nonce"))
+            object.nonce = options.bytes === String ? $util.base64.encode(message.nonce, 0, message.nonce.length) : options.bytes === Array ? Array.prototype.slice.call(message.nonce) : message.nonce;
+        return object;
+    };
+
+    /**
+     * Converts this Boxed to JSON.
+     * @function toJSON
+     * @memberof Boxed
+     * @instance
+     * @returns {Object.<string,*>} JSON object
+     */
+    Boxed.prototype.toJSON = function toJSON() {
+        return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+    };
+
+    return Boxed;
+})();
+
 export { $root as default };
