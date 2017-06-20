@@ -1,5 +1,4 @@
 import { Component, h } from 'preact'
-
 import { getInfo, registerUser } from '../api/registration'
 import { newStore, saveStore, ServerConfig } from '../state'
 import { assertNever } from '../util'

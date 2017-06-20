@@ -2,7 +2,7 @@ import { util } from 'protobufjs'
 import { secretbox } from 'tweetnacl'
 import { Boxed } from '../messages/index'
 
-export async function pbkdf2(string: string) {
+export async function PBKDF2(string: string) {
   const buffer = new Uint8Array(util.utf8.length(string))
   util.utf8.write(string, buffer, 0)
 
@@ -30,7 +30,7 @@ export async function pbkdf2(string: string) {
   return crypto.subtle.exportKey('raw', derived)
 }
 
-export async function hmac(key: BufferSource, message: string) {
+export async function HMACSign(key: BufferSource, message: string) {
   const buffer = new Uint8Array(util.utf8.length(message))
   util.utf8.write(message, buffer, 0)
 

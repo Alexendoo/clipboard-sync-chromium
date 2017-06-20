@@ -1,10 +1,10 @@
 /// <reference path="../../node_modules/@types/chrome/index.d.ts" />
 
-import { getInfo, registerUser } from '../api/registration'
-import { loadStore, newStore, saveStore } from '../state'
-
 import '../manifest.json'
 import './background.html'
+
+import { getInfo, registerUser } from '../api/registration'
+import { loadStore, newStore, saveStore } from '../state'
 
 declare global {
   interface Window {
