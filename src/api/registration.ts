@@ -1,6 +1,8 @@
+import { util } from 'protobufjs'
 import { sign } from 'tweetnacl'
 import { ILink, Link, NewDevice, ServerInfo, Signed } from '../messages'
 import { Config } from '../state'
+import { HMACSign } from './crypto'
 import { HTTPError, post } from './http'
 import { WebSocketStream } from './websocket'
 
@@ -43,8 +45,11 @@ export async function registerUser(config: Config): Promise<any> {
   return post(config, '/chain', payload)
 }
 
-export async function login(config: Config, secret: string) {
-  const target = new URL(secret, config.server.href)
+export async function login(config: Config, secret: BufferSource) {
+  const sessionID = await HMACSign(secret, 'clipboard-sync-invite')
+  const sessionString = util.utf8.read(new Uint8Array(sessionID), 0, 0)
+
+  const target = new URL(`/invite/${sessionString}`, config.server.href)
   target.protocol = 'wss'
 
   const ws = new WebSocketStream(target.href)
@@ -59,5 +64,3 @@ export async function login(config: Config, secret: string) {
   })
   ws.send(NewDevice.encode(newDevice).finish())
 }
-
-window.login = login
