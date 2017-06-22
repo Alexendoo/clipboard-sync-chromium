@@ -1,8 +1,9 @@
 import { util } from 'protobufjs'
 import { sign } from 'tweetnacl'
+import { HMACSign } from '../crypto/primitives'
+import { Valid } from '../crypto/verify'
 import { ILink, Link, NewDevice, ServerInfo, Signed } from '../messages'
 import { Config } from '../state'
-import { HMACSign } from './crypto'
 import { HTTPError, post } from './http'
 import { WebSocketStream } from './websocket'
 
@@ -19,7 +20,18 @@ export async function getInfo(server: string): Promise<ServerInfo> {
   return ServerInfo.decode(new Uint8Array(buffer))
 }
 
-export async function registerUser(config: Config): Promise<any> {
+export async function registerDevice(
+  newDevice: NewDevice,
+  lastLink: Valid<Link>,
+) {
+  const link = new Link({
+    newDevice,
+    prev: lastLink.signature,
+    index: lastLink.message.index + 1,
+  })
+}
+
+export async function registerUser(config: Config) {
   const newDevice = new NewDevice({
     FCMToken: 'f',
     name: 'moo',
@@ -42,7 +54,7 @@ export async function registerUser(config: Config): Promise<any> {
 
   const payload = Signed.encode(signed).finish()
 
-  return post(config, '/chain', payload)
+  await post(config, '/chain', payload)
 }
 
 export async function login(config: Config, secret: BufferSource) {

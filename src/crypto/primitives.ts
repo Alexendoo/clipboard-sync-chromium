@@ -1,6 +1,4 @@
 import { util } from 'protobufjs'
-import { secretbox } from 'tweetnacl'
-import { Boxed } from '../messages/index'
 
 export async function PBKDF2(string: string) {
   const buffer = new Uint8Array(util.utf8.length(string))
@@ -30,6 +28,15 @@ export async function PBKDF2(string: string) {
   return crypto.subtle.exportKey('raw', derived)
 }
 
+export function SHA256(data: BufferSource) {
+  return crypto.subtle.digest(
+    {
+      name: 'SHA-256',
+    },
+    data,
+  )
+}
+
 export async function HMACSign(key: BufferSource, message: string) {
   const buffer = new Uint8Array(util.utf8.length(message))
   util.utf8.write(message, buffer, 0)
@@ -46,16 +53,4 @@ export async function HMACSign(key: BufferSource, message: string) {
   )
 
   return crypto.subtle.sign('HMAC', importedKey, buffer)
-}
-
-export function box(message: Uint8Array, key: Uint8Array) {
-  const nonce = new Uint8Array(secretbox.nonceLength)
-  crypto.getRandomValues(nonce)
-
-  const boxed = new Boxed({
-    body: secretbox(message, nonce, key),
-    nonce,
-  })
-
-  return Boxed.encode(boxed).finish()
 }
