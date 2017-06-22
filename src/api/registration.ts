@@ -29,7 +29,7 @@ export async function registerUser(config: Config): Promise<any> {
   const link = Link.create({
     newDevice,
     prev: undefined,
-    sequenceNumber: 0,
+    index: 0,
   })
 
   const body = Link.encode(link as ILink).finish()

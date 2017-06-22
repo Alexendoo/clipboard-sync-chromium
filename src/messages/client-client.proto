@@ -1,6 +1,0 @@
-syntax = "proto3";
-
-message Boxed {
-  bytes body = 1;
-  bytes nonce = 2;
-}

@@ -4,7 +4,7 @@
   "scripts": {
     "build": "webpack",
     "watch": "webpack -w",
-    "proto": "pbjs -t static-module -w es6 -o src/messages/index.js src/messages/sigchain.proto src/messages/client-client.proto && pbts -o src/messages/index.d.ts src/messages/index.js"
+    "proto": "pbjs -t static-module -w es6 -o src/messages/index.js src/messages/messages.proto && pbts -o src/messages/index.d.ts src/messages/index.js"
   },
   "repository": {
     "type": "git",

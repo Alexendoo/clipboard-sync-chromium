@@ -1,101 +1,5 @@
 import * as $protobuf from "protobufjs";
 
-/** Properties of a ServerInfo. */
-export interface IServerInfo {
-
-    /** ServerInfo version */
-    version?: string;
-
-    /** ServerInfo senderId */
-    senderId?: string;
-}
-
-/** Represents a ServerInfo. */
-export class ServerInfo {
-
-    /**
-     * Constructs a new ServerInfo.
-     * @param [properties] Properties to set
-     */
-    constructor(properties?: IServerInfo);
-
-    /** ServerInfo version. */
-    public version: string;
-
-    /** ServerInfo senderId. */
-    public senderId: string;
-
-    /**
-     * Creates a new ServerInfo instance using the specified properties.
-     * @param [properties] Properties to set
-     * @returns ServerInfo instance
-     */
-    public static create(properties?: IServerInfo): ServerInfo;
-
-    /**
-     * Encodes the specified ServerInfo message. Does not implicitly {@link ServerInfo.verify|verify} messages.
-     * @param message ServerInfo message or plain object to encode
-     * @param [writer] Writer to encode to
-     * @returns Writer
-     */
-    public static encode(message: IServerInfo, writer?: $protobuf.Writer): $protobuf.Writer;
-
-    /**
-     * Encodes the specified ServerInfo message, length delimited. Does not implicitly {@link ServerInfo.verify|verify} messages.
-     * @param message ServerInfo message or plain object to encode
-     * @param [writer] Writer to encode to
-     * @returns Writer
-     */
-    public static encodeDelimited(message: IServerInfo, writer?: $protobuf.Writer): $protobuf.Writer;
-
-    /**
-     * Decodes a ServerInfo message from the specified reader or buffer.
-     * @param reader Reader or buffer to decode from
-     * @param [length] Message length if known beforehand
-     * @returns ServerInfo
-     * @throws {Error} If the payload is not a reader or valid buffer
-     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-     */
-    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): ServerInfo;
-
-    /**
-     * Decodes a ServerInfo message from the specified reader or buffer, length delimited.
-     * @param reader Reader or buffer to decode from
-     * @returns ServerInfo
-     * @throws {Error} If the payload is not a reader or valid buffer
-     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-     */
-    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): ServerInfo;
-
-    /**
-     * Verifies a ServerInfo message.
-     * @param message Plain object to verify
-     * @returns `null` if valid, otherwise the reason why it is not
-     */
-    public static verify(message: { [k: string]: any }): (string|null);
-
-    /**
-     * Creates a ServerInfo message from a plain object. Also converts values to their respective internal types.
-     * @param object Plain object
-     * @returns ServerInfo
-     */
-    public static fromObject(object: { [k: string]: any }): ServerInfo;
-
-    /**
-     * Creates a plain object from a ServerInfo message. Also converts values to other types if specified.
-     * @param message ServerInfo
-     * @param [options] Conversion options
-     * @returns Plain object
-     */
-    public static toObject(message: ServerInfo, options?: $protobuf.IConversionOptions): { [k: string]: any };
-
-    /**
-     * Converts this ServerInfo to JSON.
-     * @returns JSON object
-     */
-    public toJSON(): { [k: string]: any };
-}
-
 /** Properties of a Signed. */
 export interface ISigned {
 
@@ -193,6 +97,102 @@ export class Signed {
 
     /**
      * Converts this Signed to JSON.
+     * @returns JSON object
+     */
+    public toJSON(): { [k: string]: any };
+}
+
+/** Properties of a Boxed. */
+export interface IBoxed {
+
+    /** Boxed nonce */
+    nonce?: Uint8Array;
+
+    /** Boxed body */
+    body?: Uint8Array;
+}
+
+/** Represents a Boxed. */
+export class Boxed {
+
+    /**
+     * Constructs a new Boxed.
+     * @param [properties] Properties to set
+     */
+    constructor(properties?: IBoxed);
+
+    /** Boxed nonce. */
+    public nonce: Uint8Array;
+
+    /** Boxed body. */
+    public body: Uint8Array;
+
+    /**
+     * Creates a new Boxed instance using the specified properties.
+     * @param [properties] Properties to set
+     * @returns Boxed instance
+     */
+    public static create(properties?: IBoxed): Boxed;
+
+    /**
+     * Encodes the specified Boxed message. Does not implicitly {@link Boxed.verify|verify} messages.
+     * @param message Boxed message or plain object to encode
+     * @param [writer] Writer to encode to
+     * @returns Writer
+     */
+    public static encode(message: IBoxed, writer?: $protobuf.Writer): $protobuf.Writer;
+
+    /**
+     * Encodes the specified Boxed message, length delimited. Does not implicitly {@link Boxed.verify|verify} messages.
+     * @param message Boxed message or plain object to encode
+     * @param [writer] Writer to encode to
+     * @returns Writer
+     */
+    public static encodeDelimited(message: IBoxed, writer?: $protobuf.Writer): $protobuf.Writer;
+
+    /**
+     * Decodes a Boxed message from the specified reader or buffer.
+     * @param reader Reader or buffer to decode from
+     * @param [length] Message length if known beforehand
+     * @returns Boxed
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): Boxed;
+
+    /**
+     * Decodes a Boxed message from the specified reader or buffer, length delimited.
+     * @param reader Reader or buffer to decode from
+     * @returns Boxed
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): Boxed;
+
+    /**
+     * Verifies a Boxed message.
+     * @param message Plain object to verify
+     * @returns `null` if valid, otherwise the reason why it is not
+     */
+    public static verify(message: { [k: string]: any }): (string|null);
+
+    /**
+     * Creates a Boxed message from a plain object. Also converts values to their respective internal types.
+     * @param object Plain object
+     * @returns Boxed
+     */
+    public static fromObject(object: { [k: string]: any }): Boxed;
+
+    /**
+     * Creates a plain object from a Boxed message. Also converts values to other types if specified.
+     * @param message Boxed
+     * @param [options] Conversion options
+     * @returns Plain object
+     */
+    public static toObject(message: Boxed, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+    /**
+     * Converts this Boxed to JSON.
      * @returns JSON object
      */
     public toJSON(): { [k: string]: any };
@@ -306,8 +306,8 @@ export interface ILink {
     /** Link prev */
     prev?: Uint8Array;
 
-    /** Link sequenceNumber */
-    sequenceNumber?: number;
+    /** Link index */
+    index?: number;
 
     /** Link newDevice */
     newDevice?: INewDevice;
@@ -325,8 +325,8 @@ export class Link {
     /** Link prev. */
     public prev: Uint8Array;
 
-    /** Link sequenceNumber. */
-    public sequenceNumber: number;
+    /** Link index. */
+    public index: number;
 
     /** Link newDevice. */
     public newDevice?: (INewDevice|null);
@@ -405,97 +405,277 @@ export class Link {
     public toJSON(): { [k: string]: any };
 }
 
-/** Properties of a Boxed. */
-export interface IBoxed {
+/** Properties of a ServerInfo. */
+export interface IServerInfo {
 
-    /** Boxed body */
-    body?: Uint8Array;
+    /** ServerInfo version */
+    version?: string;
 
-    /** Boxed nonce */
-    nonce?: Uint8Array;
+    /** ServerInfo senderId */
+    senderId?: string;
 }
 
-/** Represents a Boxed. */
-export class Boxed {
+/** Represents a ServerInfo. */
+export class ServerInfo {
 
     /**
-     * Constructs a new Boxed.
+     * Constructs a new ServerInfo.
      * @param [properties] Properties to set
      */
-    constructor(properties?: IBoxed);
+    constructor(properties?: IServerInfo);
 
-    /** Boxed body. */
-    public body: Uint8Array;
+    /** ServerInfo version. */
+    public version: string;
 
-    /** Boxed nonce. */
-    public nonce: Uint8Array;
+    /** ServerInfo senderId. */
+    public senderId: string;
 
     /**
-     * Creates a new Boxed instance using the specified properties.
+     * Creates a new ServerInfo instance using the specified properties.
      * @param [properties] Properties to set
-     * @returns Boxed instance
+     * @returns ServerInfo instance
      */
-    public static create(properties?: IBoxed): Boxed;
+    public static create(properties?: IServerInfo): ServerInfo;
 
     /**
-     * Encodes the specified Boxed message. Does not implicitly {@link Boxed.verify|verify} messages.
-     * @param message Boxed message or plain object to encode
+     * Encodes the specified ServerInfo message. Does not implicitly {@link ServerInfo.verify|verify} messages.
+     * @param message ServerInfo message or plain object to encode
      * @param [writer] Writer to encode to
      * @returns Writer
      */
-    public static encode(message: IBoxed, writer?: $protobuf.Writer): $protobuf.Writer;
+    public static encode(message: IServerInfo, writer?: $protobuf.Writer): $protobuf.Writer;
 
     /**
-     * Encodes the specified Boxed message, length delimited. Does not implicitly {@link Boxed.verify|verify} messages.
-     * @param message Boxed message or plain object to encode
+     * Encodes the specified ServerInfo message, length delimited. Does not implicitly {@link ServerInfo.verify|verify} messages.
+     * @param message ServerInfo message or plain object to encode
      * @param [writer] Writer to encode to
      * @returns Writer
      */
-    public static encodeDelimited(message: IBoxed, writer?: $protobuf.Writer): $protobuf.Writer;
+    public static encodeDelimited(message: IServerInfo, writer?: $protobuf.Writer): $protobuf.Writer;
 
     /**
-     * Decodes a Boxed message from the specified reader or buffer.
+     * Decodes a ServerInfo message from the specified reader or buffer.
      * @param reader Reader or buffer to decode from
      * @param [length] Message length if known beforehand
-     * @returns Boxed
+     * @returns ServerInfo
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): Boxed;
+    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): ServerInfo;
 
     /**
-     * Decodes a Boxed message from the specified reader or buffer, length delimited.
+     * Decodes a ServerInfo message from the specified reader or buffer, length delimited.
      * @param reader Reader or buffer to decode from
-     * @returns Boxed
+     * @returns ServerInfo
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): Boxed;
+    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): ServerInfo;
 
     /**
-     * Verifies a Boxed message.
+     * Verifies a ServerInfo message.
      * @param message Plain object to verify
      * @returns `null` if valid, otherwise the reason why it is not
      */
     public static verify(message: { [k: string]: any }): (string|null);
 
     /**
-     * Creates a Boxed message from a plain object. Also converts values to their respective internal types.
+     * Creates a ServerInfo message from a plain object. Also converts values to their respective internal types.
      * @param object Plain object
-     * @returns Boxed
+     * @returns ServerInfo
      */
-    public static fromObject(object: { [k: string]: any }): Boxed;
+    public static fromObject(object: { [k: string]: any }): ServerInfo;
 
     /**
-     * Creates a plain object from a Boxed message. Also converts values to other types if specified.
-     * @param message Boxed
+     * Creates a plain object from a ServerInfo message. Also converts values to other types if specified.
+     * @param message ServerInfo
      * @param [options] Conversion options
      * @returns Plain object
      */
-    public static toObject(message: Boxed, options?: $protobuf.IConversionOptions): { [k: string]: any };
+    public static toObject(message: ServerInfo, options?: $protobuf.IConversionOptions): { [k: string]: any };
 
     /**
-     * Converts this Boxed to JSON.
+     * Converts this ServerInfo to JSON.
+     * @returns JSON object
+     */
+    public toJSON(): { [k: string]: any };
+}
+
+/** Properties of a ChildHello. */
+export interface IChildHello {
+
+    /** ChildHello device */
+    device?: INewDevice;
+}
+
+/** Represents a ChildHello. */
+export class ChildHello {
+
+    /**
+     * Constructs a new ChildHello.
+     * @param [properties] Properties to set
+     */
+    constructor(properties?: IChildHello);
+
+    /** ChildHello device. */
+    public device?: (INewDevice|null);
+
+    /**
+     * Creates a new ChildHello instance using the specified properties.
+     * @param [properties] Properties to set
+     * @returns ChildHello instance
+     */
+    public static create(properties?: IChildHello): ChildHello;
+
+    /**
+     * Encodes the specified ChildHello message. Does not implicitly {@link ChildHello.verify|verify} messages.
+     * @param message ChildHello message or plain object to encode
+     * @param [writer] Writer to encode to
+     * @returns Writer
+     */
+    public static encode(message: IChildHello, writer?: $protobuf.Writer): $protobuf.Writer;
+
+    /**
+     * Encodes the specified ChildHello message, length delimited. Does not implicitly {@link ChildHello.verify|verify} messages.
+     * @param message ChildHello message or plain object to encode
+     * @param [writer] Writer to encode to
+     * @returns Writer
+     */
+    public static encodeDelimited(message: IChildHello, writer?: $protobuf.Writer): $protobuf.Writer;
+
+    /**
+     * Decodes a ChildHello message from the specified reader or buffer.
+     * @param reader Reader or buffer to decode from
+     * @param [length] Message length if known beforehand
+     * @returns ChildHello
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): ChildHello;
+
+    /**
+     * Decodes a ChildHello message from the specified reader or buffer, length delimited.
+     * @param reader Reader or buffer to decode from
+     * @returns ChildHello
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): ChildHello;
+
+    /**
+     * Verifies a ChildHello message.
+     * @param message Plain object to verify
+     * @returns `null` if valid, otherwise the reason why it is not
+     */
+    public static verify(message: { [k: string]: any }): (string|null);
+
+    /**
+     * Creates a ChildHello message from a plain object. Also converts values to their respective internal types.
+     * @param object Plain object
+     * @returns ChildHello
+     */
+    public static fromObject(object: { [k: string]: any }): ChildHello;
+
+    /**
+     * Creates a plain object from a ChildHello message. Also converts values to other types if specified.
+     * @param message ChildHello
+     * @param [options] Conversion options
+     * @returns Plain object
+     */
+    public static toObject(message: ChildHello, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+    /**
+     * Converts this ChildHello to JSON.
+     * @returns JSON object
+     */
+    public toJSON(): { [k: string]: any };
+}
+
+/** Properties of a ParentHello. */
+export interface IParentHello {
+
+    /** ParentHello root */
+    root?: ILink;
+}
+
+/** Represents a ParentHello. */
+export class ParentHello {
+
+    /**
+     * Constructs a new ParentHello.
+     * @param [properties] Properties to set
+     */
+    constructor(properties?: IParentHello);
+
+    /** ParentHello root. */
+    public root?: (ILink|null);
+
+    /**
+     * Creates a new ParentHello instance using the specified properties.
+     * @param [properties] Properties to set
+     * @returns ParentHello instance
+     */
+    public static create(properties?: IParentHello): ParentHello;
+
+    /**
+     * Encodes the specified ParentHello message. Does not implicitly {@link ParentHello.verify|verify} messages.
+     * @param message ParentHello message or plain object to encode
+     * @param [writer] Writer to encode to
+     * @returns Writer
+     */
+    public static encode(message: IParentHello, writer?: $protobuf.Writer): $protobuf.Writer;
+
+    /**
+     * Encodes the specified ParentHello message, length delimited. Does not implicitly {@link ParentHello.verify|verify} messages.
+     * @param message ParentHello message or plain object to encode
+     * @param [writer] Writer to encode to
+     * @returns Writer
+     */
+    public static encodeDelimited(message: IParentHello, writer?: $protobuf.Writer): $protobuf.Writer;
+
+    /**
+     * Decodes a ParentHello message from the specified reader or buffer.
+     * @param reader Reader or buffer to decode from
+     * @param [length] Message length if known beforehand
+     * @returns ParentHello
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): ParentHello;
+
+    /**
+     * Decodes a ParentHello message from the specified reader or buffer, length delimited.
+     * @param reader Reader or buffer to decode from
+     * @returns ParentHello
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): ParentHello;
+
+    /**
+     * Verifies a ParentHello message.
+     * @param message Plain object to verify
+     * @returns `null` if valid, otherwise the reason why it is not
+     */
+    public static verify(message: { [k: string]: any }): (string|null);
+
+    /**
+     * Creates a ParentHello message from a plain object. Also converts values to their respective internal types.
+     * @param object Plain object
+     * @returns ParentHello
+     */
+    public static fromObject(object: { [k: string]: any }): ParentHello;
+
+    /**
+     * Creates a plain object from a ParentHello message. Also converts values to other types if specified.
+     * @param message ParentHello
+     * @param [options] Conversion options
+     * @returns Plain object
+     */
+    public static toObject(message: ParentHello, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+    /**
+     * Converts this ParentHello to JSON.
      * @returns JSON object
      */
     public toJSON(): { [k: string]: any };

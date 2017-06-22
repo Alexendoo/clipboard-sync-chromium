@@ -1,0 +1,49 @@
+syntax = "proto3";
+option go_package = "messages";
+
+// crypto
+
+message Signed {
+  bytes body = 1;
+  bytes signature = 2;
+  bytes public_key = 3;
+}
+
+message Boxed {
+  bytes nonce = 1;
+  bytes body = 2;
+}
+
+// sigchain
+
+message NewDevice {
+  string name = 1;
+  bytes public_key = 2;
+  string FCM_token = 3;
+}
+
+message Link {
+  bytes prev = 1;
+  uint32 index = 2;
+  oneof body {
+    NewDevice new_device = 3;
+  }
+}
+
+// client-server
+
+message ServerInfo {
+  string version = 1;
+  string sender_id = 2;
+}
+
+// client-client
+
+message ChildHello {
+  NewDevice device = 1;
+}
+
+message ParentHello {
+  // root of the user's sigchain (index = 0)
+  Link root = 1;
+}

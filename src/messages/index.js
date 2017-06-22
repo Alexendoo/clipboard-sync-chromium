@@ -7,215 +7,6 @@ const $Reader = $protobuf.Reader, $Writer = $protobuf.Writer, $util = $protobuf.
 // Exported root namespace
 const $root = $protobuf.roots["default"] || ($protobuf.roots["default"] = {});
 
-export const ServerInfo = $root.ServerInfo = (() => {
-
-    /**
-     * Properties of a ServerInfo.
-     * @exports IServerInfo
-     * @interface IServerInfo
-     * @property {string} [version] ServerInfo version
-     * @property {string} [senderId] ServerInfo senderId
-     */
-
-    /**
-     * Constructs a new ServerInfo.
-     * @exports ServerInfo
-     * @classdesc Represents a ServerInfo.
-     * @constructor
-     * @param {IServerInfo=} [properties] Properties to set
-     */
-    function ServerInfo(properties) {
-        if (properties)
-            for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                if (properties[keys[i]] != null)
-                    this[keys[i]] = properties[keys[i]];
-    }
-
-    /**
-     * ServerInfo version.
-     * @member {string}version
-     * @memberof ServerInfo
-     * @instance
-     */
-    ServerInfo.prototype.version = "";
-
-    /**
-     * ServerInfo senderId.
-     * @member {string}senderId
-     * @memberof ServerInfo
-     * @instance
-     */
-    ServerInfo.prototype.senderId = "";
-
-    /**
-     * Creates a new ServerInfo instance using the specified properties.
-     * @function create
-     * @memberof ServerInfo
-     * @static
-     * @param {IServerInfo=} [properties] Properties to set
-     * @returns {ServerInfo} ServerInfo instance
-     */
-    ServerInfo.create = function create(properties) {
-        return new ServerInfo(properties);
-    };
-
-    /**
-     * Encodes the specified ServerInfo message. Does not implicitly {@link ServerInfo.verify|verify} messages.
-     * @function encode
-     * @memberof ServerInfo
-     * @static
-     * @param {IServerInfo} message ServerInfo message or plain object to encode
-     * @param {$protobuf.Writer} [writer] Writer to encode to
-     * @returns {$protobuf.Writer} Writer
-     */
-    ServerInfo.encode = function encode(message, writer) {
-        if (!writer)
-            writer = $Writer.create();
-        if (message.version != null && message.hasOwnProperty("version"))
-            writer.uint32(/* id 1, wireType 2 =*/10).string(message.version);
-        if (message.senderId != null && message.hasOwnProperty("senderId"))
-            writer.uint32(/* id 2, wireType 2 =*/18).string(message.senderId);
-        return writer;
-    };
-
-    /**
-     * Encodes the specified ServerInfo message, length delimited. Does not implicitly {@link ServerInfo.verify|verify} messages.
-     * @function encodeDelimited
-     * @memberof ServerInfo
-     * @static
-     * @param {IServerInfo} message ServerInfo message or plain object to encode
-     * @param {$protobuf.Writer} [writer] Writer to encode to
-     * @returns {$protobuf.Writer} Writer
-     */
-    ServerInfo.encodeDelimited = function encodeDelimited(message, writer) {
-        return this.encode(message, writer).ldelim();
-    };
-
-    /**
-     * Decodes a ServerInfo message from the specified reader or buffer.
-     * @function decode
-     * @memberof ServerInfo
-     * @static
-     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-     * @param {number} [length] Message length if known beforehand
-     * @returns {ServerInfo} ServerInfo
-     * @throws {Error} If the payload is not a reader or valid buffer
-     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-     */
-    ServerInfo.decode = function decode(reader, length) {
-        if (!(reader instanceof $Reader))
-            reader = $Reader.create(reader);
-        let end = length === undefined ? reader.len : reader.pos + length, message = new $root.ServerInfo();
-        while (reader.pos < end) {
-            let tag = reader.uint32();
-            switch (tag >>> 3) {
-            case 1:
-                message.version = reader.string();
-                break;
-            case 2:
-                message.senderId = reader.string();
-                break;
-            default:
-                reader.skipType(tag & 7);
-                break;
-            }
-        }
-        return message;
-    };
-
-    /**
-     * Decodes a ServerInfo message from the specified reader or buffer, length delimited.
-     * @function decodeDelimited
-     * @memberof ServerInfo
-     * @static
-     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-     * @returns {ServerInfo} ServerInfo
-     * @throws {Error} If the payload is not a reader or valid buffer
-     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-     */
-    ServerInfo.decodeDelimited = function decodeDelimited(reader) {
-        if (!(reader instanceof $Reader))
-            reader = new $Reader(reader);
-        return this.decode(reader, reader.uint32());
-    };
-
-    /**
-     * Verifies a ServerInfo message.
-     * @function verify
-     * @memberof ServerInfo
-     * @static
-     * @param {Object.<string,*>} message Plain object to verify
-     * @returns {string|null} `null` if valid, otherwise the reason why it is not
-     */
-    ServerInfo.verify = function verify(message) {
-        if (typeof message !== "object" || message === null)
-            return "object expected";
-        if (message.version != null && message.hasOwnProperty("version"))
-            if (!$util.isString(message.version))
-                return "version: string expected";
-        if (message.senderId != null && message.hasOwnProperty("senderId"))
-            if (!$util.isString(message.senderId))
-                return "senderId: string expected";
-        return null;
-    };
-
-    /**
-     * Creates a ServerInfo message from a plain object. Also converts values to their respective internal types.
-     * @function fromObject
-     * @memberof ServerInfo
-     * @static
-     * @param {Object.<string,*>} object Plain object
-     * @returns {ServerInfo} ServerInfo
-     */
-    ServerInfo.fromObject = function fromObject(object) {
-        if (object instanceof $root.ServerInfo)
-            return object;
-        let message = new $root.ServerInfo();
-        if (object.version != null)
-            message.version = String(object.version);
-        if (object.senderId != null)
-            message.senderId = String(object.senderId);
-        return message;
-    };
-
-    /**
-     * Creates a plain object from a ServerInfo message. Also converts values to other types if specified.
-     * @function toObject
-     * @memberof ServerInfo
-     * @static
-     * @param {ServerInfo} message ServerInfo
-     * @param {$protobuf.IConversionOptions} [options] Conversion options
-     * @returns {Object.<string,*>} Plain object
-     */
-    ServerInfo.toObject = function toObject(message, options) {
-        if (!options)
-            options = {};
-        let object = {};
-        if (options.defaults) {
-            object.version = "";
-            object.senderId = "";
-        }
-        if (message.version != null && message.hasOwnProperty("version"))
-            object.version = message.version;
-        if (message.senderId != null && message.hasOwnProperty("senderId"))
-            object.senderId = message.senderId;
-        return object;
-    };
-
-    /**
-     * Converts this ServerInfo to JSON.
-     * @function toJSON
-     * @memberof ServerInfo
-     * @instance
-     * @returns {Object.<string,*>} JSON object
-     */
-    ServerInfo.prototype.toJSON = function toJSON() {
-        return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
-    };
-
-    return ServerInfo;
-})();
-
 export const Signed = $root.Signed = (() => {
 
     /**
@@ -454,6 +245,221 @@ export const Signed = $root.Signed = (() => {
     };
 
     return Signed;
+})();
+
+export const Boxed = $root.Boxed = (() => {
+
+    /**
+     * Properties of a Boxed.
+     * @exports IBoxed
+     * @interface IBoxed
+     * @property {Uint8Array} [nonce] Boxed nonce
+     * @property {Uint8Array} [body] Boxed body
+     */
+
+    /**
+     * Constructs a new Boxed.
+     * @exports Boxed
+     * @classdesc Represents a Boxed.
+     * @constructor
+     * @param {IBoxed=} [properties] Properties to set
+     */
+    function Boxed(properties) {
+        if (properties)
+            for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                if (properties[keys[i]] != null)
+                    this[keys[i]] = properties[keys[i]];
+    }
+
+    /**
+     * Boxed nonce.
+     * @member {Uint8Array}nonce
+     * @memberof Boxed
+     * @instance
+     */
+    Boxed.prototype.nonce = $util.newBuffer([]);
+
+    /**
+     * Boxed body.
+     * @member {Uint8Array}body
+     * @memberof Boxed
+     * @instance
+     */
+    Boxed.prototype.body = $util.newBuffer([]);
+
+    /**
+     * Creates a new Boxed instance using the specified properties.
+     * @function create
+     * @memberof Boxed
+     * @static
+     * @param {IBoxed=} [properties] Properties to set
+     * @returns {Boxed} Boxed instance
+     */
+    Boxed.create = function create(properties) {
+        return new Boxed(properties);
+    };
+
+    /**
+     * Encodes the specified Boxed message. Does not implicitly {@link Boxed.verify|verify} messages.
+     * @function encode
+     * @memberof Boxed
+     * @static
+     * @param {IBoxed} message Boxed message or plain object to encode
+     * @param {$protobuf.Writer} [writer] Writer to encode to
+     * @returns {$protobuf.Writer} Writer
+     */
+    Boxed.encode = function encode(message, writer) {
+        if (!writer)
+            writer = $Writer.create();
+        if (message.nonce != null && message.hasOwnProperty("nonce"))
+            writer.uint32(/* id 1, wireType 2 =*/10).bytes(message.nonce);
+        if (message.body != null && message.hasOwnProperty("body"))
+            writer.uint32(/* id 2, wireType 2 =*/18).bytes(message.body);
+        return writer;
+    };
+
+    /**
+     * Encodes the specified Boxed message, length delimited. Does not implicitly {@link Boxed.verify|verify} messages.
+     * @function encodeDelimited
+     * @memberof Boxed
+     * @static
+     * @param {IBoxed} message Boxed message or plain object to encode
+     * @param {$protobuf.Writer} [writer] Writer to encode to
+     * @returns {$protobuf.Writer} Writer
+     */
+    Boxed.encodeDelimited = function encodeDelimited(message, writer) {
+        return this.encode(message, writer).ldelim();
+    };
+
+    /**
+     * Decodes a Boxed message from the specified reader or buffer.
+     * @function decode
+     * @memberof Boxed
+     * @static
+     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+     * @param {number} [length] Message length if known beforehand
+     * @returns {Boxed} Boxed
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    Boxed.decode = function decode(reader, length) {
+        if (!(reader instanceof $Reader))
+            reader = $Reader.create(reader);
+        let end = length === undefined ? reader.len : reader.pos + length, message = new $root.Boxed();
+        while (reader.pos < end) {
+            let tag = reader.uint32();
+            switch (tag >>> 3) {
+            case 1:
+                message.nonce = reader.bytes();
+                break;
+            case 2:
+                message.body = reader.bytes();
+                break;
+            default:
+                reader.skipType(tag & 7);
+                break;
+            }
+        }
+        return message;
+    };
+
+    /**
+     * Decodes a Boxed message from the specified reader or buffer, length delimited.
+     * @function decodeDelimited
+     * @memberof Boxed
+     * @static
+     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+     * @returns {Boxed} Boxed
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    Boxed.decodeDelimited = function decodeDelimited(reader) {
+        if (!(reader instanceof $Reader))
+            reader = new $Reader(reader);
+        return this.decode(reader, reader.uint32());
+    };
+
+    /**
+     * Verifies a Boxed message.
+     * @function verify
+     * @memberof Boxed
+     * @static
+     * @param {Object.<string,*>} message Plain object to verify
+     * @returns {string|null} `null` if valid, otherwise the reason why it is not
+     */
+    Boxed.verify = function verify(message) {
+        if (typeof message !== "object" || message === null)
+            return "object expected";
+        if (message.nonce != null && message.hasOwnProperty("nonce"))
+            if (!(message.nonce && typeof message.nonce.length === "number" || $util.isString(message.nonce)))
+                return "nonce: buffer expected";
+        if (message.body != null && message.hasOwnProperty("body"))
+            if (!(message.body && typeof message.body.length === "number" || $util.isString(message.body)))
+                return "body: buffer expected";
+        return null;
+    };
+
+    /**
+     * Creates a Boxed message from a plain object. Also converts values to their respective internal types.
+     * @function fromObject
+     * @memberof Boxed
+     * @static
+     * @param {Object.<string,*>} object Plain object
+     * @returns {Boxed} Boxed
+     */
+    Boxed.fromObject = function fromObject(object) {
+        if (object instanceof $root.Boxed)
+            return object;
+        let message = new $root.Boxed();
+        if (object.nonce != null)
+            if (typeof object.nonce === "string")
+                $util.base64.decode(object.nonce, message.nonce = $util.newBuffer($util.base64.length(object.nonce)), 0);
+            else if (object.nonce.length)
+                message.nonce = object.nonce;
+        if (object.body != null)
+            if (typeof object.body === "string")
+                $util.base64.decode(object.body, message.body = $util.newBuffer($util.base64.length(object.body)), 0);
+            else if (object.body.length)
+                message.body = object.body;
+        return message;
+    };
+
+    /**
+     * Creates a plain object from a Boxed message. Also converts values to other types if specified.
+     * @function toObject
+     * @memberof Boxed
+     * @static
+     * @param {Boxed} message Boxed
+     * @param {$protobuf.IConversionOptions} [options] Conversion options
+     * @returns {Object.<string,*>} Plain object
+     */
+    Boxed.toObject = function toObject(message, options) {
+        if (!options)
+            options = {};
+        let object = {};
+        if (options.defaults) {
+            object.nonce = options.bytes === String ? "" : [];
+            object.body = options.bytes === String ? "" : [];
+        }
+        if (message.nonce != null && message.hasOwnProperty("nonce"))
+            object.nonce = options.bytes === String ? $util.base64.encode(message.nonce, 0, message.nonce.length) : options.bytes === Array ? Array.prototype.slice.call(message.nonce) : message.nonce;
+        if (message.body != null && message.hasOwnProperty("body"))
+            object.body = options.bytes === String ? $util.base64.encode(message.body, 0, message.body.length) : options.bytes === Array ? Array.prototype.slice.call(message.body) : message.body;
+        return object;
+    };
+
+    /**
+     * Converts this Boxed to JSON.
+     * @function toJSON
+     * @memberof Boxed
+     * @instance
+     * @returns {Object.<string,*>} JSON object
+     */
+    Boxed.prototype.toJSON = function toJSON() {
+        return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+    };
+
+    return Boxed;
 })();
 
 export const NewDevice = $root.NewDevice = (() => {
@@ -697,7 +703,7 @@ export const Link = $root.Link = (() => {
      * @exports ILink
      * @interface ILink
      * @property {Uint8Array} [prev] Link prev
-     * @property {number} [sequenceNumber] Link sequenceNumber
+     * @property {number} [index] Link index
      * @property {INewDevice} [newDevice] Link newDevice
      */
 
@@ -724,12 +730,12 @@ export const Link = $root.Link = (() => {
     Link.prototype.prev = $util.newBuffer([]);
 
     /**
-     * Link sequenceNumber.
-     * @member {number}sequenceNumber
+     * Link index.
+     * @member {number}index
      * @memberof Link
      * @instance
      */
-    Link.prototype.sequenceNumber = 0;
+    Link.prototype.index = 0;
 
     /**
      * Link newDevice.
@@ -779,8 +785,8 @@ export const Link = $root.Link = (() => {
             writer = $Writer.create();
         if (message.prev != null && message.hasOwnProperty("prev"))
             writer.uint32(/* id 1, wireType 2 =*/10).bytes(message.prev);
-        if (message.sequenceNumber != null && message.hasOwnProperty("sequenceNumber"))
-            writer.uint32(/* id 2, wireType 0 =*/16).uint32(message.sequenceNumber);
+        if (message.index != null && message.hasOwnProperty("index"))
+            writer.uint32(/* id 2, wireType 0 =*/16).uint32(message.index);
         if (message.newDevice != null && message.hasOwnProperty("newDevice"))
             $root.NewDevice.encode(message.newDevice, writer.uint32(/* id 3, wireType 2 =*/26).fork()).ldelim();
         return writer;
@@ -821,7 +827,7 @@ export const Link = $root.Link = (() => {
                 message.prev = reader.bytes();
                 break;
             case 2:
-                message.sequenceNumber = reader.uint32();
+                message.index = reader.uint32();
                 break;
             case 3:
                 message.newDevice = $root.NewDevice.decode(reader, reader.uint32());
@@ -865,9 +871,9 @@ export const Link = $root.Link = (() => {
         if (message.prev != null && message.hasOwnProperty("prev"))
             if (!(message.prev && typeof message.prev.length === "number" || $util.isString(message.prev)))
                 return "prev: buffer expected";
-        if (message.sequenceNumber != null && message.hasOwnProperty("sequenceNumber"))
-            if (!$util.isInteger(message.sequenceNumber))
-                return "sequenceNumber: integer expected";
+        if (message.index != null && message.hasOwnProperty("index"))
+            if (!$util.isInteger(message.index))
+                return "index: integer expected";
         if (message.newDevice != null && message.hasOwnProperty("newDevice")) {
             properties.body = 1;
             let error = $root.NewDevice.verify(message.newDevice);
@@ -894,8 +900,8 @@ export const Link = $root.Link = (() => {
                 $util.base64.decode(object.prev, message.prev = $util.newBuffer($util.base64.length(object.prev)), 0);
             else if (object.prev.length)
                 message.prev = object.prev;
-        if (object.sequenceNumber != null)
-            message.sequenceNumber = object.sequenceNumber >>> 0;
+        if (object.index != null)
+            message.index = object.index >>> 0;
         if (object.newDevice != null) {
             if (typeof object.newDevice !== "object")
                 throw TypeError(".Link.newDevice: object expected");
@@ -919,12 +925,12 @@ export const Link = $root.Link = (() => {
         let object = {};
         if (options.defaults) {
             object.prev = options.bytes === String ? "" : [];
-            object.sequenceNumber = 0;
+            object.index = 0;
         }
         if (message.prev != null && message.hasOwnProperty("prev"))
             object.prev = options.bytes === String ? $util.base64.encode(message.prev, 0, message.prev.length) : options.bytes === Array ? Array.prototype.slice.call(message.prev) : message.prev;
-        if (message.sequenceNumber != null && message.hasOwnProperty("sequenceNumber"))
-            object.sequenceNumber = message.sequenceNumber;
+        if (message.index != null && message.hasOwnProperty("index"))
+            object.index = message.index;
         if (message.newDevice != null && message.hasOwnProperty("newDevice")) {
             object.newDevice = $root.NewDevice.toObject(message.newDevice, options);
             if (options.oneofs)
@@ -947,24 +953,24 @@ export const Link = $root.Link = (() => {
     return Link;
 })();
 
-export const Boxed = $root.Boxed = (() => {
+export const ServerInfo = $root.ServerInfo = (() => {
 
     /**
-     * Properties of a Boxed.
-     * @exports IBoxed
-     * @interface IBoxed
-     * @property {Uint8Array} [body] Boxed body
-     * @property {Uint8Array} [nonce] Boxed nonce
+     * Properties of a ServerInfo.
+     * @exports IServerInfo
+     * @interface IServerInfo
+     * @property {string} [version] ServerInfo version
+     * @property {string} [senderId] ServerInfo senderId
      */
 
     /**
-     * Constructs a new Boxed.
-     * @exports Boxed
-     * @classdesc Represents a Boxed.
+     * Constructs a new ServerInfo.
+     * @exports ServerInfo
+     * @classdesc Represents a ServerInfo.
      * @constructor
-     * @param {IBoxed=} [properties] Properties to set
+     * @param {IServerInfo=} [properties] Properties to set
      */
-    function Boxed(properties) {
+    function ServerInfo(properties) {
         if (properties)
             for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                 if (properties[keys[i]] != null)
@@ -972,88 +978,88 @@ export const Boxed = $root.Boxed = (() => {
     }
 
     /**
-     * Boxed body.
-     * @member {Uint8Array}body
-     * @memberof Boxed
+     * ServerInfo version.
+     * @member {string}version
+     * @memberof ServerInfo
      * @instance
      */
-    Boxed.prototype.body = $util.newBuffer([]);
+    ServerInfo.prototype.version = "";
 
     /**
-     * Boxed nonce.
-     * @member {Uint8Array}nonce
-     * @memberof Boxed
+     * ServerInfo senderId.
+     * @member {string}senderId
+     * @memberof ServerInfo
      * @instance
      */
-    Boxed.prototype.nonce = $util.newBuffer([]);
+    ServerInfo.prototype.senderId = "";
 
     /**
-     * Creates a new Boxed instance using the specified properties.
+     * Creates a new ServerInfo instance using the specified properties.
      * @function create
-     * @memberof Boxed
+     * @memberof ServerInfo
      * @static
-     * @param {IBoxed=} [properties] Properties to set
-     * @returns {Boxed} Boxed instance
+     * @param {IServerInfo=} [properties] Properties to set
+     * @returns {ServerInfo} ServerInfo instance
      */
-    Boxed.create = function create(properties) {
-        return new Boxed(properties);
+    ServerInfo.create = function create(properties) {
+        return new ServerInfo(properties);
     };
 
     /**
-     * Encodes the specified Boxed message. Does not implicitly {@link Boxed.verify|verify} messages.
+     * Encodes the specified ServerInfo message. Does not implicitly {@link ServerInfo.verify|verify} messages.
      * @function encode
-     * @memberof Boxed
+     * @memberof ServerInfo
      * @static
-     * @param {IBoxed} message Boxed message or plain object to encode
+     * @param {IServerInfo} message ServerInfo message or plain object to encode
      * @param {$protobuf.Writer} [writer] Writer to encode to
      * @returns {$protobuf.Writer} Writer
      */
-    Boxed.encode = function encode(message, writer) {
+    ServerInfo.encode = function encode(message, writer) {
         if (!writer)
             writer = $Writer.create();
-        if (message.body != null && message.hasOwnProperty("body"))
-            writer.uint32(/* id 1, wireType 2 =*/10).bytes(message.body);
-        if (message.nonce != null && message.hasOwnProperty("nonce"))
-            writer.uint32(/* id 2, wireType 2 =*/18).bytes(message.nonce);
+        if (message.version != null && message.hasOwnProperty("version"))
+            writer.uint32(/* id 1, wireType 2 =*/10).string(message.version);
+        if (message.senderId != null && message.hasOwnProperty("senderId"))
+            writer.uint32(/* id 2, wireType 2 =*/18).string(message.senderId);
         return writer;
     };
 
     /**
-     * Encodes the specified Boxed message, length delimited. Does not implicitly {@link Boxed.verify|verify} messages.
+     * Encodes the specified ServerInfo message, length delimited. Does not implicitly {@link ServerInfo.verify|verify} messages.
      * @function encodeDelimited
-     * @memberof Boxed
+     * @memberof ServerInfo
      * @static
-     * @param {IBoxed} message Boxed message or plain object to encode
+     * @param {IServerInfo} message ServerInfo message or plain object to encode
      * @param {$protobuf.Writer} [writer] Writer to encode to
      * @returns {$protobuf.Writer} Writer
      */
-    Boxed.encodeDelimited = function encodeDelimited(message, writer) {
+    ServerInfo.encodeDelimited = function encodeDelimited(message, writer) {
         return this.encode(message, writer).ldelim();
     };
 
     /**
-     * Decodes a Boxed message from the specified reader or buffer.
+     * Decodes a ServerInfo message from the specified reader or buffer.
      * @function decode
-     * @memberof Boxed
+     * @memberof ServerInfo
      * @static
      * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
      * @param {number} [length] Message length if known beforehand
-     * @returns {Boxed} Boxed
+     * @returns {ServerInfo} ServerInfo
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    Boxed.decode = function decode(reader, length) {
+    ServerInfo.decode = function decode(reader, length) {
         if (!(reader instanceof $Reader))
             reader = $Reader.create(reader);
-        let end = length === undefined ? reader.len : reader.pos + length, message = new $root.Boxed();
+        let end = length === undefined ? reader.len : reader.pos + length, message = new $root.ServerInfo();
         while (reader.pos < end) {
             let tag = reader.uint32();
             switch (tag >>> 3) {
             case 1:
-                message.body = reader.bytes();
+                message.version = reader.string();
                 break;
             case 2:
-                message.nonce = reader.bytes();
+                message.senderId = reader.string();
                 break;
             default:
                 reader.skipType(tag & 7);
@@ -1064,102 +1070,478 @@ export const Boxed = $root.Boxed = (() => {
     };
 
     /**
-     * Decodes a Boxed message from the specified reader or buffer, length delimited.
+     * Decodes a ServerInfo message from the specified reader or buffer, length delimited.
      * @function decodeDelimited
-     * @memberof Boxed
+     * @memberof ServerInfo
      * @static
      * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-     * @returns {Boxed} Boxed
+     * @returns {ServerInfo} ServerInfo
      * @throws {Error} If the payload is not a reader or valid buffer
      * @throws {$protobuf.util.ProtocolError} If required fields are missing
      */
-    Boxed.decodeDelimited = function decodeDelimited(reader) {
+    ServerInfo.decodeDelimited = function decodeDelimited(reader) {
         if (!(reader instanceof $Reader))
             reader = new $Reader(reader);
         return this.decode(reader, reader.uint32());
     };
 
     /**
-     * Verifies a Boxed message.
+     * Verifies a ServerInfo message.
      * @function verify
-     * @memberof Boxed
+     * @memberof ServerInfo
      * @static
      * @param {Object.<string,*>} message Plain object to verify
      * @returns {string|null} `null` if valid, otherwise the reason why it is not
      */
-    Boxed.verify = function verify(message) {
+    ServerInfo.verify = function verify(message) {
         if (typeof message !== "object" || message === null)
             return "object expected";
-        if (message.body != null && message.hasOwnProperty("body"))
-            if (!(message.body && typeof message.body.length === "number" || $util.isString(message.body)))
-                return "body: buffer expected";
-        if (message.nonce != null && message.hasOwnProperty("nonce"))
-            if (!(message.nonce && typeof message.nonce.length === "number" || $util.isString(message.nonce)))
-                return "nonce: buffer expected";
+        if (message.version != null && message.hasOwnProperty("version"))
+            if (!$util.isString(message.version))
+                return "version: string expected";
+        if (message.senderId != null && message.hasOwnProperty("senderId"))
+            if (!$util.isString(message.senderId))
+                return "senderId: string expected";
         return null;
     };
 
     /**
-     * Creates a Boxed message from a plain object. Also converts values to their respective internal types.
+     * Creates a ServerInfo message from a plain object. Also converts values to their respective internal types.
      * @function fromObject
-     * @memberof Boxed
+     * @memberof ServerInfo
      * @static
      * @param {Object.<string,*>} object Plain object
-     * @returns {Boxed} Boxed
+     * @returns {ServerInfo} ServerInfo
      */
-    Boxed.fromObject = function fromObject(object) {
-        if (object instanceof $root.Boxed)
+    ServerInfo.fromObject = function fromObject(object) {
+        if (object instanceof $root.ServerInfo)
             return object;
-        let message = new $root.Boxed();
-        if (object.body != null)
-            if (typeof object.body === "string")
-                $util.base64.decode(object.body, message.body = $util.newBuffer($util.base64.length(object.body)), 0);
-            else if (object.body.length)
-                message.body = object.body;
-        if (object.nonce != null)
-            if (typeof object.nonce === "string")
-                $util.base64.decode(object.nonce, message.nonce = $util.newBuffer($util.base64.length(object.nonce)), 0);
-            else if (object.nonce.length)
-                message.nonce = object.nonce;
+        let message = new $root.ServerInfo();
+        if (object.version != null)
+            message.version = String(object.version);
+        if (object.senderId != null)
+            message.senderId = String(object.senderId);
         return message;
     };
 
     /**
-     * Creates a plain object from a Boxed message. Also converts values to other types if specified.
+     * Creates a plain object from a ServerInfo message. Also converts values to other types if specified.
      * @function toObject
-     * @memberof Boxed
+     * @memberof ServerInfo
      * @static
-     * @param {Boxed} message Boxed
+     * @param {ServerInfo} message ServerInfo
      * @param {$protobuf.IConversionOptions} [options] Conversion options
      * @returns {Object.<string,*>} Plain object
      */
-    Boxed.toObject = function toObject(message, options) {
+    ServerInfo.toObject = function toObject(message, options) {
         if (!options)
             options = {};
         let object = {};
         if (options.defaults) {
-            object.body = options.bytes === String ? "" : [];
-            object.nonce = options.bytes === String ? "" : [];
+            object.version = "";
+            object.senderId = "";
         }
-        if (message.body != null && message.hasOwnProperty("body"))
-            object.body = options.bytes === String ? $util.base64.encode(message.body, 0, message.body.length) : options.bytes === Array ? Array.prototype.slice.call(message.body) : message.body;
-        if (message.nonce != null && message.hasOwnProperty("nonce"))
-            object.nonce = options.bytes === String ? $util.base64.encode(message.nonce, 0, message.nonce.length) : options.bytes === Array ? Array.prototype.slice.call(message.nonce) : message.nonce;
+        if (message.version != null && message.hasOwnProperty("version"))
+            object.version = message.version;
+        if (message.senderId != null && message.hasOwnProperty("senderId"))
+            object.senderId = message.senderId;
         return object;
     };
 
     /**
-     * Converts this Boxed to JSON.
+     * Converts this ServerInfo to JSON.
      * @function toJSON
-     * @memberof Boxed
+     * @memberof ServerInfo
      * @instance
      * @returns {Object.<string,*>} JSON object
      */
-    Boxed.prototype.toJSON = function toJSON() {
+    ServerInfo.prototype.toJSON = function toJSON() {
         return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
     };
 
-    return Boxed;
+    return ServerInfo;
+})();
+
+export const ChildHello = $root.ChildHello = (() => {
+
+    /**
+     * Properties of a ChildHello.
+     * @exports IChildHello
+     * @interface IChildHello
+     * @property {INewDevice} [device] ChildHello device
+     */
+
+    /**
+     * Constructs a new ChildHello.
+     * @exports ChildHello
+     * @classdesc Represents a ChildHello.
+     * @constructor
+     * @param {IChildHello=} [properties] Properties to set
+     */
+    function ChildHello(properties) {
+        if (properties)
+            for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                if (properties[keys[i]] != null)
+                    this[keys[i]] = properties[keys[i]];
+    }
+
+    /**
+     * ChildHello device.
+     * @member {(INewDevice|null|undefined)}device
+     * @memberof ChildHello
+     * @instance
+     */
+    ChildHello.prototype.device = null;
+
+    /**
+     * Creates a new ChildHello instance using the specified properties.
+     * @function create
+     * @memberof ChildHello
+     * @static
+     * @param {IChildHello=} [properties] Properties to set
+     * @returns {ChildHello} ChildHello instance
+     */
+    ChildHello.create = function create(properties) {
+        return new ChildHello(properties);
+    };
+
+    /**
+     * Encodes the specified ChildHello message. Does not implicitly {@link ChildHello.verify|verify} messages.
+     * @function encode
+     * @memberof ChildHello
+     * @static
+     * @param {IChildHello} message ChildHello message or plain object to encode
+     * @param {$protobuf.Writer} [writer] Writer to encode to
+     * @returns {$protobuf.Writer} Writer
+     */
+    ChildHello.encode = function encode(message, writer) {
+        if (!writer)
+            writer = $Writer.create();
+        if (message.device != null && message.hasOwnProperty("device"))
+            $root.NewDevice.encode(message.device, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
+        return writer;
+    };
+
+    /**
+     * Encodes the specified ChildHello message, length delimited. Does not implicitly {@link ChildHello.verify|verify} messages.
+     * @function encodeDelimited
+     * @memberof ChildHello
+     * @static
+     * @param {IChildHello} message ChildHello message or plain object to encode
+     * @param {$protobuf.Writer} [writer] Writer to encode to
+     * @returns {$protobuf.Writer} Writer
+     */
+    ChildHello.encodeDelimited = function encodeDelimited(message, writer) {
+        return this.encode(message, writer).ldelim();
+    };
+
+    /**
+     * Decodes a ChildHello message from the specified reader or buffer.
+     * @function decode
+     * @memberof ChildHello
+     * @static
+     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+     * @param {number} [length] Message length if known beforehand
+     * @returns {ChildHello} ChildHello
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    ChildHello.decode = function decode(reader, length) {
+        if (!(reader instanceof $Reader))
+            reader = $Reader.create(reader);
+        let end = length === undefined ? reader.len : reader.pos + length, message = new $root.ChildHello();
+        while (reader.pos < end) {
+            let tag = reader.uint32();
+            switch (tag >>> 3) {
+            case 1:
+                message.device = $root.NewDevice.decode(reader, reader.uint32());
+                break;
+            default:
+                reader.skipType(tag & 7);
+                break;
+            }
+        }
+        return message;
+    };
+
+    /**
+     * Decodes a ChildHello message from the specified reader or buffer, length delimited.
+     * @function decodeDelimited
+     * @memberof ChildHello
+     * @static
+     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+     * @returns {ChildHello} ChildHello
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    ChildHello.decodeDelimited = function decodeDelimited(reader) {
+        if (!(reader instanceof $Reader))
+            reader = new $Reader(reader);
+        return this.decode(reader, reader.uint32());
+    };
+
+    /**
+     * Verifies a ChildHello message.
+     * @function verify
+     * @memberof ChildHello
+     * @static
+     * @param {Object.<string,*>} message Plain object to verify
+     * @returns {string|null} `null` if valid, otherwise the reason why it is not
+     */
+    ChildHello.verify = function verify(message) {
+        if (typeof message !== "object" || message === null)
+            return "object expected";
+        if (message.device != null && message.hasOwnProperty("device")) {
+            let error = $root.NewDevice.verify(message.device);
+            if (error)
+                return "device." + error;
+        }
+        return null;
+    };
+
+    /**
+     * Creates a ChildHello message from a plain object. Also converts values to their respective internal types.
+     * @function fromObject
+     * @memberof ChildHello
+     * @static
+     * @param {Object.<string,*>} object Plain object
+     * @returns {ChildHello} ChildHello
+     */
+    ChildHello.fromObject = function fromObject(object) {
+        if (object instanceof $root.ChildHello)
+            return object;
+        let message = new $root.ChildHello();
+        if (object.device != null) {
+            if (typeof object.device !== "object")
+                throw TypeError(".ChildHello.device: object expected");
+            message.device = $root.NewDevice.fromObject(object.device);
+        }
+        return message;
+    };
+
+    /**
+     * Creates a plain object from a ChildHello message. Also converts values to other types if specified.
+     * @function toObject
+     * @memberof ChildHello
+     * @static
+     * @param {ChildHello} message ChildHello
+     * @param {$protobuf.IConversionOptions} [options] Conversion options
+     * @returns {Object.<string,*>} Plain object
+     */
+    ChildHello.toObject = function toObject(message, options) {
+        if (!options)
+            options = {};
+        let object = {};
+        if (options.defaults)
+            object.device = null;
+        if (message.device != null && message.hasOwnProperty("device"))
+            object.device = $root.NewDevice.toObject(message.device, options);
+        return object;
+    };
+
+    /**
+     * Converts this ChildHello to JSON.
+     * @function toJSON
+     * @memberof ChildHello
+     * @instance
+     * @returns {Object.<string,*>} JSON object
+     */
+    ChildHello.prototype.toJSON = function toJSON() {
+        return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+    };
+
+    return ChildHello;
+})();
+
+export const ParentHello = $root.ParentHello = (() => {
+
+    /**
+     * Properties of a ParentHello.
+     * @exports IParentHello
+     * @interface IParentHello
+     * @property {ILink} [root] ParentHello root
+     */
+
+    /**
+     * Constructs a new ParentHello.
+     * @exports ParentHello
+     * @classdesc Represents a ParentHello.
+     * @constructor
+     * @param {IParentHello=} [properties] Properties to set
+     */
+    function ParentHello(properties) {
+        if (properties)
+            for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                if (properties[keys[i]] != null)
+                    this[keys[i]] = properties[keys[i]];
+    }
+
+    /**
+     * ParentHello root.
+     * @member {(ILink|null|undefined)}root
+     * @memberof ParentHello
+     * @instance
+     */
+    ParentHello.prototype.root = null;
+
+    /**
+     * Creates a new ParentHello instance using the specified properties.
+     * @function create
+     * @memberof ParentHello
+     * @static
+     * @param {IParentHello=} [properties] Properties to set
+     * @returns {ParentHello} ParentHello instance
+     */
+    ParentHello.create = function create(properties) {
+        return new ParentHello(properties);
+    };
+
+    /**
+     * Encodes the specified ParentHello message. Does not implicitly {@link ParentHello.verify|verify} messages.
+     * @function encode
+     * @memberof ParentHello
+     * @static
+     * @param {IParentHello} message ParentHello message or plain object to encode
+     * @param {$protobuf.Writer} [writer] Writer to encode to
+     * @returns {$protobuf.Writer} Writer
+     */
+    ParentHello.encode = function encode(message, writer) {
+        if (!writer)
+            writer = $Writer.create();
+        if (message.root != null && message.hasOwnProperty("root"))
+            $root.Link.encode(message.root, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
+        return writer;
+    };
+
+    /**
+     * Encodes the specified ParentHello message, length delimited. Does not implicitly {@link ParentHello.verify|verify} messages.
+     * @function encodeDelimited
+     * @memberof ParentHello
+     * @static
+     * @param {IParentHello} message ParentHello message or plain object to encode
+     * @param {$protobuf.Writer} [writer] Writer to encode to
+     * @returns {$protobuf.Writer} Writer
+     */
+    ParentHello.encodeDelimited = function encodeDelimited(message, writer) {
+        return this.encode(message, writer).ldelim();
+    };
+
+    /**
+     * Decodes a ParentHello message from the specified reader or buffer.
+     * @function decode
+     * @memberof ParentHello
+     * @static
+     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+     * @param {number} [length] Message length if known beforehand
+     * @returns {ParentHello} ParentHello
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    ParentHello.decode = function decode(reader, length) {
+        if (!(reader instanceof $Reader))
+            reader = $Reader.create(reader);
+        let end = length === undefined ? reader.len : reader.pos + length, message = new $root.ParentHello();
+        while (reader.pos < end) {
+            let tag = reader.uint32();
+            switch (tag >>> 3) {
+            case 1:
+                message.root = $root.Link.decode(reader, reader.uint32());
+                break;
+            default:
+                reader.skipType(tag & 7);
+                break;
+            }
+        }
+        return message;
+    };
+
+    /**
+     * Decodes a ParentHello message from the specified reader or buffer, length delimited.
+     * @function decodeDelimited
+     * @memberof ParentHello
+     * @static
+     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+     * @returns {ParentHello} ParentHello
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    ParentHello.decodeDelimited = function decodeDelimited(reader) {
+        if (!(reader instanceof $Reader))
+            reader = new $Reader(reader);
+        return this.decode(reader, reader.uint32());
+    };
+
+    /**
+     * Verifies a ParentHello message.
+     * @function verify
+     * @memberof ParentHello
+     * @static
+     * @param {Object.<string,*>} message Plain object to verify
+     * @returns {string|null} `null` if valid, otherwise the reason why it is not
+     */
+    ParentHello.verify = function verify(message) {
+        if (typeof message !== "object" || message === null)
+            return "object expected";
+        if (message.root != null && message.hasOwnProperty("root")) {
+            let error = $root.Link.verify(message.root);
+            if (error)
+                return "root." + error;
+        }
+        return null;
+    };
+
+    /**
+     * Creates a ParentHello message from a plain object. Also converts values to their respective internal types.
+     * @function fromObject
+     * @memberof ParentHello
+     * @static
+     * @param {Object.<string,*>} object Plain object
+     * @returns {ParentHello} ParentHello
+     */
+    ParentHello.fromObject = function fromObject(object) {
+        if (object instanceof $root.ParentHello)
+            return object;
+        let message = new $root.ParentHello();
+        if (object.root != null) {
+            if (typeof object.root !== "object")
+                throw TypeError(".ParentHello.root: object expected");
+            message.root = $root.Link.fromObject(object.root);
+        }
+        return message;
+    };
+
+    /**
+     * Creates a plain object from a ParentHello message. Also converts values to other types if specified.
+     * @function toObject
+     * @memberof ParentHello
+     * @static
+     * @param {ParentHello} message ParentHello
+     * @param {$protobuf.IConversionOptions} [options] Conversion options
+     * @returns {Object.<string,*>} Plain object
+     */
+    ParentHello.toObject = function toObject(message, options) {
+        if (!options)
+            options = {};
+        let object = {};
+        if (options.defaults)
+            object.root = null;
+        if (message.root != null && message.hasOwnProperty("root"))
+            object.root = $root.Link.toObject(message.root, options);
+        return object;
+    };
+
+    /**
+     * Converts this ParentHello to JSON.
+     * @function toJSON
+     * @memberof ParentHello
+     * @instance
+     * @returns {Object.<string,*>} JSON object
+     */
+    ParentHello.prototype.toJSON = function toJSON() {
+        return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+    };
+
+    return ParentHello;
 })();
 
 export { $root as default };
