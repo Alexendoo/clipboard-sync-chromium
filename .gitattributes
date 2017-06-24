@@ -1,2 +1,3 @@
 * text eol=lf
-src/messages/index.js linguist-generated=true
+src/messages/index.js   linguist-generated=true
+src/messages/index.d.ts linguist-generated=true
