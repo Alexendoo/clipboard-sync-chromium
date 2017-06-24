@@ -22,12 +22,18 @@ export async function getInfo(server: string): Promise<ServerInfo> {
 export async function registerDevice(
   newDevice: NewDevice,
   lastLink: Valid<Link>,
+  config: Config,
 ) {
   const link = new Link({
     newDevice,
     prev: lastLink.signature,
     index: lastLink.message.index + 1,
   })
+
+  const signed = sign(link, config.ed25519, Link)
+  const payload = Signed.encode(signed).finish()
+
+  await post(config, '/chain', payload)
 }
 
 export async function registerUser(config: Config) {
@@ -39,7 +45,6 @@ export async function registerUser(config: Config) {
 
   const link = Link.create({
     newDevice,
-    prev: undefined,
     index: 0,
   })
 
