@@ -739,7 +739,7 @@ export const Link = $root.Link = (() => {
 
     /**
      * Link newDevice.
-     * @member {(INewDevice|null|undefined)}newDevice
+     * @member {(INewDevice|undefined)}newDevice
      * @memberof Link
      * @instance
      */
@@ -876,9 +876,11 @@ export const Link = $root.Link = (() => {
                 return "index: integer expected";
         if (message.newDevice != null && message.hasOwnProperty("newDevice")) {
             properties.body = 1;
-            let error = $root.NewDevice.verify(message.newDevice);
-            if (error)
-                return "newDevice." + error;
+            {
+                let error = $root.NewDevice.verify(message.newDevice);
+                if (error)
+                    return "newDevice." + error;
+            }
         }
         return null;
     };
@@ -1187,7 +1189,7 @@ export const ChildHello = $root.ChildHello = (() => {
 
     /**
      * ChildHello device.
-     * @member {(INewDevice|null|undefined)}device
+     * @member {(INewDevice|undefined)}device
      * @memberof ChildHello
      * @instance
      */
@@ -1378,7 +1380,7 @@ export const ParentHello = $root.ParentHello = (() => {
 
     /**
      * ParentHello root.
-     * @member {(ILink|null|undefined)}root
+     * @member {(ILink|undefined)}root
      * @memberof ParentHello
      * @instance
      */

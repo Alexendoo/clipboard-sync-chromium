@@ -329,7 +329,7 @@ export class Link {
     public index: number;
 
     /** Link newDevice. */
-    public newDevice?: (INewDevice|null);
+    public newDevice?: INewDevice;
 
     /** Link body. */
     public body?: string;
@@ -518,7 +518,7 @@ export class ChildHello {
     constructor(properties?: IChildHello);
 
     /** ChildHello device. */
-    public device?: (INewDevice|null);
+    public device?: INewDevice;
 
     /**
      * Creates a new ChildHello instance using the specified properties.
@@ -608,7 +608,7 @@ export class ParentHello {
     constructor(properties?: IParentHello);
 
     /** ParentHello root. */
-    public root?: (ILink|null);
+    public root?: ILink;
 
     /**
      * Creates a new ParentHello instance using the specified properties.
