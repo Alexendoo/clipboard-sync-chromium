@@ -1,14 +1,16 @@
 {
   "compilerOptions": {
+    "alwaysStrict": true,
     "forceConsistentCasingInFileNames": true,
     "jsx": "react",
     "jsxFactory": "h",
     "module": "es2015",
     "moduleResolution": "node",
+    "noImplicitThis": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "sourceMap": true,
-    "strict": true,
+    "strictNullChecks": true,
     "target": "es2017"
   },
   "include": [
