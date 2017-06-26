@@ -1,20 +1,32 @@
 import './popup.html'
 
 import createHistory from 'history/createHashHistory'
-import { h, render } from 'preact'
-import { Route, Router } from 'preact-router'
+import { Component, h, render } from 'preact'
+import { Route, route, Router } from 'preact-router'
 import { Home } from '../components/home'
-import { Pending } from '../components/pending'
 import { Register } from '../components/register'
+import { loadConfig } from '../state/config'
 
-async function main(): Promise<JSX.Element> {
-  throw 'foo'
+class InitialRoute extends Component<{}, {}> {
+  async componentWillMount() {
+    try {
+      await loadConfig()
+      route('/foo')
+    } catch (e) {
+      route('/register')
+    }
+  }
 
-  return (
-    <Router history={createHistory()}>
-      <Route default component={Home} />
-    </Router>
-  )
+  render() {
+    return <div />
+  }
 }
 
-render(<Pending component={main()} fallback={<Register />} />, document.body)
+const Main = () =>
+  <Router history={createHistory()}>
+    <Route default component={InitialRoute} />
+    <Route path="/foo" component={Home} />
+    <Route path="/register" component={Register} />
+  </Router>
+
+render(<Main />, document.body)
