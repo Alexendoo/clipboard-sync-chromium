@@ -11,7 +11,7 @@ class InitialRoute extends Component<{}, {}> {
   async componentWillMount() {
     try {
       await loadConfig()
-      route('/foo')
+      route('/home')
     } catch (e) {
       route('/register')
     }
@@ -25,7 +25,7 @@ class InitialRoute extends Component<{}, {}> {
 const Main = () =>
   <Router history={createHistory()}>
     <Route default component={InitialRoute} />
-    <Route path="/foo" component={Home} />
+    <Route path="/home" component={Home} />
     <Route path="/register" component={Register} />
   </Router>
 
