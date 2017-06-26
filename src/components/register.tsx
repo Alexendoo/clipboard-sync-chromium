@@ -1,7 +1,7 @@
 import { Component, h } from 'preact'
 import { getInfo, registerUser } from '../api/registration'
 import { newConfig, saveConfig, ServerConfig } from '../state/config'
-import { assertNever } from '../util'
+import { assertNever } from '../util/assert'
 import { ErrorView } from './error'
 
 const enum Stage {

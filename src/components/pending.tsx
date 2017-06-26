@@ -1,5 +1,5 @@
 import { Component, h } from 'preact'
-import { assertNever } from '../util'
+import { assertNever } from '../util/assert'
 
 const enum Status {
   Done,
