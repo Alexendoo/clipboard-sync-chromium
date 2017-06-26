@@ -1,6 +1,4 @@
 import idb, { UpgradeDB } from 'idb'
-import { createStore, Store } from 'redux'
-import { box, sign } from 'tweetnacl'
 import { IServerInfo } from './messages/index'
 
 export interface State {
@@ -18,10 +16,6 @@ export interface ServerConfig {
   readonly info: IServerInfo
 }
 
-function reducer(state: State): State {
-  return state
-}
-
 function upgradeDB(db: UpgradeDB) {
   switch (db.oldVersion) {
     case 0:
@@ -33,19 +27,7 @@ function getDB() {
   return idb.open('state', 1, upgradeDB)
 }
 
-export function newStore(serverConfig: ServerConfig): Store<State> {
-  const state = {
-    config: {
-      curve25519: box.keyPair(),
-      ed25519: sign.keyPair(),
-      server: serverConfig,
-    },
-  }
-
-  return createStore(reducer, state)
-}
-
-export async function loadStore(): Promise<Store<State>> {
+export async function loadState(): Promise<State> {
   const db = await getDB()
   const tx = db.transaction('state', 'readonly')
 
@@ -54,12 +36,12 @@ export async function loadStore(): Promise<Store<State>> {
     throw new Error('State not found')
   }
 
-  return createStore(reducer, state)
+  return state
 }
 
-export async function saveStore(store: Store<State>) {
+export async function saveState(state: State) {
   const db = await getDB()
   const tx = db.transaction('state', 'readwrite')
 
-  return tx.objectStore('state').put(store.getState(), 0)
+  return tx.objectStore('state').put(state, 0)
 }
