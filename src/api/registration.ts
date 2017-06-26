@@ -2,7 +2,7 @@ import { util } from 'protobufjs'
 import { HMACSign } from '../crypto/primitives'
 import { sign, Valid } from '../crypto/valid'
 import { Link, NewDevice, ServerInfo, Signed } from '../messages'
-import { Config } from '../state'
+import { Config } from '../state/config'
 import { HTTPError, post } from './http'
 import { WebSocketStream } from './websocket'
 

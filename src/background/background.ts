@@ -1,22 +1,11 @@
-/// <reference path="../../node_modules/@types/chrome/index.d.ts" />
-
 import '../manifest.json'
 import './background.html'
-
-import { getInfo, registerUser } from '../api/registration'
-import { loadStore, newStore, saveStore } from '../state'
 
 declare global {
   interface Window {
     [key: string]: any
   }
 }
-
-window.getInfo = getInfo
-window.registerUser = registerUser
-window.loadStore = loadStore
-window.saveStore = saveStore
-window.newStore = newStore
 
 chrome.runtime.onStartup.addListener(() => {
   chrome.storage.local.get('registered', result => {

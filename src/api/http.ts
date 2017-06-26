@@ -1,4 +1,4 @@
-import { Config } from '../state'
+import { Config } from '../state/config'
 
 async function http(
   config: Config,

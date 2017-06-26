@@ -1,6 +1,6 @@
 import { Component, h } from 'preact'
 import { getInfo, registerUser } from '../api/registration'
-import { newStore, saveStore, ServerConfig } from '../state'
+import { newConfig, saveConfig, ServerConfig } from '../state/config'
 import { assertNever } from '../util'
 import { ErrorView } from './error'
 
@@ -173,10 +173,9 @@ interface NewUserState {
 class NewUser extends Component<NewUserProps, NewUserState> {
   async componentWillMount() {
     try {
-      const store = newStore(this.props.config)
-      const state = store.getState()
-      await registerUser(state.config)
-      await saveStore(store)
+      const config = newConfig(this.props.config)
+      await registerUser(config)
+      await saveConfig(config)
       location.reload(true)
     } catch (error) {
       this.setState({ error })
