@@ -26,21 +26,19 @@ function getDB() {
   return idb.open(DB_NAME, 1, upgradeDB)
 }
 
-let loaded: Config | undefined
-
 export function newConfig(serverConfig: ServerConfig): Config {
-  loaded = {
+  return {
     curve25519: box.keyPair(),
     ed25519: sign.keyPair(),
     server: serverConfig,
   }
-
-  return loaded
 }
 
+let loaded: Config | undefined
+
 /**
- * Returns the current application Config, must first be loaded with
- * {@link loadConfig}
+ * Returns the current application Config, must first be initialised with
+ * {@link loadConfig} or {@link saveConfig}
  */
 export function getConfig(): Config {
   if (loaded === undefined) {
@@ -63,6 +61,8 @@ export async function loadConfig(): Promise<Config> {
 }
 
 export async function saveConfig(config: Config) {
+  loaded = config
+
   const db = await getDB()
   const tx = db.transaction(DB_NAME, 'readwrite')
 
