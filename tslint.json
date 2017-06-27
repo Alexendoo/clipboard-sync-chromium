@@ -1,7 +1,5 @@
 {
   "rules": {
-    "no-unused-expression": true,
-    "no-duplicate-variable": true,
     "ordered-imports": [
       true,
       {
@@ -10,6 +8,9 @@
       }
     ],
     "class-name": true,
+    "jsdoc-format": true,
+    "no-duplicate-variable": true,
+    "no-unused-expression": true,
     "triple-equals": true
   }
 }
