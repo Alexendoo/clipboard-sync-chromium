@@ -33,7 +33,7 @@ export async function registerDevice(
   const signed = sign(link, config.ed25519, Link)
   const payload = Signed.encode(signed).finish()
 
-  await post(config, '/chain', payload)
+  await post('/chain', payload)
 }
 
 export async function registerUser(config: Config) {
@@ -51,7 +51,7 @@ export async function registerUser(config: Config) {
   const signed = sign(link, config.ed25519, Link)
   const payload = Signed.encode(signed).finish()
 
-  await post(config, '/chain', payload)
+  await post('/chain', payload)
 }
 
 export async function login(config: Config, secret: BufferSource) {
