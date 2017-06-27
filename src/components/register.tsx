@@ -1,4 +1,5 @@
 import { Component, h } from 'preact'
+import { route } from 'preact-router'
 import { getInfo, registerUser } from '../api/registration'
 import { newConfig, saveConfig, ServerConfig } from '../state/config'
 import { assertNever } from '../util/assert'
@@ -176,7 +177,7 @@ class NewUser extends Component<NewUserProps, NewUserState> {
       const config = newConfig(this.props.config)
       await registerUser(config)
       await saveConfig(config)
-      location.reload(true)
+      route('/home')
     } catch (error) {
       this.setState({ error })
     }
