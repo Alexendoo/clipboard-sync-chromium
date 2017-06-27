@@ -3,10 +3,7 @@ node_js:
   - "8.1.2"
 install:
   - yarn install
-  - yarn global add greenkeeper-lockfile@1
+  - yarn list
 script:
-  - greenkeeper-lockfile-update
   - yarn build
   - yarn lint
-after_script:
-  - greenkeeper-lockfile-upload
