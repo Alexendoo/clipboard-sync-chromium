@@ -1,6 +1,6 @@
 import idb, { UpgradeDB } from 'idb'
 import { box, sign } from 'tweetnacl'
-import { IServerInfo } from '../messages/index'
+import { IServerInfo } from '../../generated/messages'
 
 export interface Config {
   readonly curve25519: Readonly<nacl.BoxKeyPair>
