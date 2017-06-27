@@ -2,7 +2,7 @@ language: node_js
 node_js:
   - "8.1.2"
 install:
-  - yarn install --verbose
+  - yarn install
   - yarn global add greenkeeper-lockfile@1
 script:
   - greenkeeper-lockfile-update

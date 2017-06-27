@@ -1,6 +1,6 @@
 import { Writer } from 'protobufjs'
 import { sign as naclSign } from 'tweetnacl'
-import { Signed } from '../messages/index'
+import { Signed } from '../../generated/messages'
 
 export class InvalidSignatureError extends Error {
   constructor() {
