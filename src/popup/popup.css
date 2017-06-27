@@ -1,3 +1,6 @@
+@import "../components/register.css";
+
 body {
-  background: cyan;
+  width: 600px;
+  font-size: 100%;
 }
