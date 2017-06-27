@@ -1,87 +1,18 @@
 import { Component, h } from 'preact'
-import { route } from 'preact-router'
+import { Link, route, Route } from 'preact-router'
 import { getInfo, registerUser } from '../api/registration'
 import { newConfig, saveConfig, ServerConfig } from '../state/config'
-import { assertNever } from '../util/assert'
 import { ErrorView } from './error'
 
-const enum Stage {
-  GetInfo,
-  ChooseMethod,
-  Method,
-}
-
-interface StageGetInfo {
-  stage: Stage.GetInfo
-}
-
-interface StageChooseMethod {
-  stage: Stage.ChooseMethod
-  config: ServerConfig
-}
-
-interface StageMethod {
-  stage: Stage.Method
-  method: JSX.Element
-}
-
-type RegisterState = StageGetInfo | StageChooseMethod | StageMethod
-
-export class Register extends Component<{}, RegisterState> {
-  constructor() {
-    super()
-    this.onConfig = this.onConfig.bind(this)
-    this.onSelect = this.onSelect.bind(this)
-    this.state = {
-      stage: Stage.GetInfo,
-    }
-  }
-
-  onConfig(config: ServerConfig) {
-    const state = {
-      stage: Stage.ChooseMethod,
-      config,
-    }
-
-    this.setState(state)
-  }
-
-  onSelect(method: JSX.Element) {
-    const state = {
-      stage: Stage.Method,
-      method,
-    }
-
-    this.setState(state)
-  }
-
-  render() {
-    const state = this.state
-    switch (state.stage) {
-      case Stage.GetInfo:
-        return <GetInfo onConfig={this.onConfig} />
-      case Stage.ChooseMethod:
-        return <ChooseMethod config={state.config} onSelect={this.onSelect} />
-      case Stage.Method:
-        return state.method
-      default:
-        throw assertNever(state)
-    }
-  }
-}
-
-interface GetInfoProps {
-  onConfig: (info: ServerConfig) => void
-}
+let serverConfig: ServerConfig
 
 interface GetInfoState {
-  config?: ServerConfig
   error?: Error
   resolving: boolean
   value: string
 }
 
-class GetInfo extends Component<GetInfoProps, GetInfoState> {
+class GetInfo extends Component<{}, GetInfoState> {
   constructor() {
     super()
 
@@ -112,10 +43,11 @@ class GetInfo extends Component<GetInfoProps, GetInfoState> {
 
     try {
       const info = await getInfo(this.state.value)
-      this.props.onConfig({
-        info,
+      serverConfig = {
         href: this.state.value,
-      })
+        info,
+      }
+      route('/register/method')
     } catch (error) {
       this.setState({
         error,
@@ -140,41 +72,23 @@ class GetInfo extends Component<GetInfoProps, GetInfoState> {
   }
 }
 
-interface ChooseMethodProps {
-  config: ServerConfig
-  onSelect: (method: JSX.Element) => void
-}
+const ChooseMethod = () =>
+  <div>
+    <p>choose method</p>
 
-class ChooseMethod extends Component<ChooseMethodProps, {}> {
-  render() {
-    return (
-      <div>
-        <a
-          onClick={() =>
-            this.props.onSelect(<NewUser config={this.props.config} />)}
-        >
-          New User
-        </a>
-        <a onClick={() => {}}>
-          Login
-        </a>
-      </div>
-    )
-  }
-}
-
-interface NewUserProps {
-  config: ServerConfig
-}
+    <Link href="/register/new-user">New User</Link>
+    {' '}
+    <Link href="/register/login">Login</Link>
+  </div>
 
 interface NewUserState {
   error?: Error
 }
 
-class NewUser extends Component<NewUserProps, NewUserState> {
+class NewUser extends Component<{}, NewUserState> {
   async componentWillMount() {
     try {
-      const config = newConfig(this.props.config)
+      const config = newConfig(serverConfig)
       await saveConfig(config)
       await registerUser()
       route('/home')
@@ -187,3 +101,9 @@ class NewUser extends Component<NewUserProps, NewUserState> {
     return <ErrorView error={this.state.error} />
   }
 }
+
+export const RegisterRoutes = [
+  <Route path="/register/" component={GetInfo} />,
+  <Route path="/register/method" component={ChooseMethod} />,
+  <Route path="/register/new-user" component={NewUser} />,
+]
