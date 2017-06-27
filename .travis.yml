@@ -8,4 +8,5 @@ script:
   - greenkeeper-lockfile-update
   - yarn build
   - yarn lint
+after_script:
   - greenkeeper-lockfile-upload
