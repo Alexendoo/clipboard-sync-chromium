@@ -1,3 +1,4 @@
+import './popup.css'
 import './popup.html'
 
 import createHistory from 'history/createHashHistory'

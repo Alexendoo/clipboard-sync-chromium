@@ -175,8 +175,8 @@ class NewUser extends Component<NewUserProps, NewUserState> {
   async componentWillMount() {
     try {
       const config = newConfig(this.props.config)
-      await registerUser(config)
       await saveConfig(config)
+      await registerUser()
       route('/home')
     } catch (error) {
       this.setState({ error })
