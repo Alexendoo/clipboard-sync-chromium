@@ -1,5 +1,9 @@
 language: node_js
 node_js:
   - "8.1.2"
+before_install:
+  - yarn global add greenkeeper-lockfile@1
 script:
+  - greenkeeper-lockfile-update
   - yarn build
+  - greenkeeper-lockfile-upload
