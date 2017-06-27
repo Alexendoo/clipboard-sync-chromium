@@ -30,6 +30,7 @@
   "devDependencies": {
     "@types/chrome": "^0.0.47",
     "@types/history": "^4.6.0",
+    "@types/webpack": "^2.2.16",
     "css-loader": "^0.28.4",
     "extract-text-webpack-plugin": "^2.1.2",
     "file-loader": "^0.11.2",
