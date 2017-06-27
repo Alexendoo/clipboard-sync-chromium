@@ -17,7 +17,7 @@
   },
   "homepage": "https://github.com/Alexendoo/clipboard-sync-chromium#readme",
   "dependencies": {
-    "history": "^4.6.2",
+    "history": "^4.6.3",
     "idb": "^2.0.3",
     "preact": "^8.1.0",
     "preact-router": "^2.5.2",
@@ -27,13 +27,13 @@
   },
   "devDependencies": {
     "@types/chrome": "^0.0.47",
-    "@types/history": "^4.5.2",
-    "file-loader": "^0.11.1",
-    "prettier": "^1.4.2",
+    "@types/history": "^4.6.0",
+    "file-loader": "^0.11.2",
+    "prettier": "^1.4.4",
     "rimraf": "^2.6.1",
-    "ts-loader": "^2.1.0",
+    "ts-loader": "^2.2.0",
     "tslint": "^5.4.3",
-    "typescript": "^2.3.2",
+    "typescript": "^2.3.4",
     "webpack": "^3.0.0"
   }
 }
