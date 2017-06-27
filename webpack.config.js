@@ -47,10 +47,7 @@ module.exports = function(env) {
         },
         {
           test: /.(?:json|html)$/,
-          loader: 'file-loader',
-          query: {
-            name: '[name].[ext]',
-          },
+          loader: 'file-loader?name=[name].[ext]',
         },
         {
           test: /\.css$/,
