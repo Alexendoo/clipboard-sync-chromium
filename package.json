@@ -5,7 +5,7 @@
     "build": "webpack",
     "build:prod": "webpack --env.production",
     "watch": "webpack -w",
-    "lint": "prettier --no-semi --single-quote --trailing-comma all --list-different \"src/**/*.ts\"",
+    "lint": "prettier --no-semi --single-quote --trailing-comma all --list-different \"src/**/*.{css,ts,tsx}\"",
     "proto": "pbjs -t static-module -w es6 -o generated/messages.js generated/messages.proto && pbts -o generated/messages.d.ts generated/messages.js"
   },
   "repository": {
