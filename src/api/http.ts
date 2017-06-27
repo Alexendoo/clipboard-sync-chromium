@@ -1,11 +1,7 @@
-import { Config } from '../state/config'
+import { getConfig } from '../state/config'
 
-async function http(
-  config: Config,
-  path: string,
-  method: 'GET' | 'POST',
-  body?: Uint8Array,
-) {
+async function http(path: string, method: 'GET' | 'POST', body?: Uint8Array) {
+  const config = getConfig()
   const target = new URL(path, config.server.href)
 
   const response = await fetch(target.href, {
@@ -30,10 +26,10 @@ export class HTTPError extends Error {
   }
 }
 
-export async function get(config: Config, path: string) {
-  return http(config, path, 'GET')
+export async function get(path: string) {
+  return http(path, 'GET')
 }
 
-export async function post(config: Config, path: string, body: Uint8Array) {
-  return http(config, path, 'POST', body)
+export async function post(path: string, body: Uint8Array) {
+  return http(path, 'POST', body)
 }
