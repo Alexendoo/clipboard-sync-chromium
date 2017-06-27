@@ -26,15 +26,17 @@ function getDB() {
   return idb.open(DB_NAME, 1, upgradeDB)
 }
 
+let loaded: Config | undefined
+
 export function newConfig(serverConfig: ServerConfig): Config {
-  return {
+  loaded = {
     curve25519: box.keyPair(),
     ed25519: sign.keyPair(),
     server: serverConfig,
   }
-}
 
-let loaded: Config | undefined
+  return loaded
+}
 
 /**
  * Returns the current application Config, must first be loaded with
