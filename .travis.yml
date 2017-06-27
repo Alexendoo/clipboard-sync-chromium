@@ -6,4 +6,5 @@ before_install:
 script:
   - greenkeeper-lockfile-update
   - yarn build
+  - yarn lint
   - greenkeeper-lockfile-upload
