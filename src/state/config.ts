@@ -34,15 +34,29 @@ export function newConfig(serverConfig: ServerConfig): Config {
   }
 }
 
+let loaded: Config | undefined
+
+/**
+ * Returns the current application Config, must first be loaded with
+ * {@link loadConfig}
+ */
+export function getConfig(): Config {
+  if (loaded === undefined) {
+    throw new Error('Config not loaded')
+  }
+  return loaded
+}
+
 export async function loadConfig(): Promise<Config> {
   const db = await getDB()
   const tx = db.transaction(DB_NAME, 'readonly')
 
   const config = await tx.objectStore(DB_NAME).get(0)
   if (config === undefined) {
-    throw new Error('State not found')
+    throw new Error('Config not found')
   }
 
+  loaded = config
   return config
 }
 
