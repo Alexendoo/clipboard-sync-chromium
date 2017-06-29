@@ -49,3 +49,32 @@ export class Stages extends Component<StagesProps, StagesState> {
     )
   }
 }
+
+interface ContinueProps<Props> extends StageProps {
+  nextComponent: AnyComponentConstructor<Props>
+  nextProps?: Props
+}
+
+export class Continue<Props> extends Component<ContinueProps<Props>, {}> {
+  constructor() {
+    super()
+    this.onClick = this.onClick.bind(this)
+  }
+
+  onClick() {
+    this.props.continue(this.props.nextComponent, this.props.nextProps)
+  }
+
+  render() {
+    return (
+      <button
+        aria-role="link"
+        class="continue"
+        type="button"
+        onClick={this.onClick}
+      >
+        {this.props.children}
+      </button>
+    )
+  }
+}
