@@ -1,80 +1,44 @@
-import { Component, ComponentConstructor, FunctionalComponent, h } from 'preact'
+import { Component } from 'preact'
 
-type AnyComponentConstructor<Props> =
-  | ComponentConstructor<Props, any>
-  | FunctionalComponent<Props>
+export class Stages extends Component<
+  {
+    stepper(
+      next: (nextProps?: object) => void,
+    ): IterableIterator<JSX.Element | undefined>
+  },
+  {
+    element: JSX.Element
+  }
+> {
+  private pending: Promise<object>
+  private resolve: (nextProps: object) => void
 
-export interface StageProps {
-  continue<Props>(
-    nextComponent: AnyComponentConstructor<Props>,
-    nextProps?: Props,
-  ): void
-}
-
-interface StagesProps {
-  initial: AnyComponentConstructor<StageProps>
-}
-
-interface StagesState {
-  component: AnyComponentConstructor<StageProps>
-  lastProps?: object
-}
-
-export class Stages extends Component<StagesProps, StagesState> {
   constructor() {
     super()
-    this.state = {
-      component: this.props.initial,
-      lastProps: {},
-    }
-    this.onContinue = this.onContinue.bind(this)
+    this.callback = this.callback.bind(this)
+    this.pending = Promise.resolve({})
   }
 
-  onContinue(
-    nextComponent: AnyComponentConstructor<StageProps>,
-    nextProps?: object,
-  ) {
-    this.setState({
-      component: nextComponent,
-      lastProps: nextProps,
+  private callback(nextProps: object = {}) {
+    this.resolve(nextProps)
+    this.pending = new Promise(resolve => {
+      this.resolve = resolve
     })
   }
 
-  render() {
-    return (
-      <this.state.component
-        {...this.state.lastProps}
-        continue={this.onContinue}
-      />
-    )
-  }
-}
+  async componentWillMount() {
+    const iter = this.props.stepper(this.callback)
 
-interface ContinueProps<Props> extends StageProps {
-  nextComponent: AnyComponentConstructor<Props>
-  nextProps?: Props
-}
+    while (true) {
+      const props = await this.pending
+      const element = iter.next(props).value
+      if (element === undefined) break
 
-export class Continue<Props> extends Component<ContinueProps<Props>, {}> {
-  constructor() {
-    super()
-    this.onClick = this.onClick.bind(this)
-  }
-
-  onClick() {
-    this.props.continue(this.props.nextComponent, this.props.nextProps)
+      this.setState({ element })
+    }
   }
 
   render() {
-    return (
-      <button
-        aria-role="link"
-        class="continue"
-        type="button"
-        onClick={this.onClick}
-      >
-        {this.props.children}
-      </button>
-    )
+    return this.state.element
   }
 }
