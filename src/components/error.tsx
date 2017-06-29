@@ -7,15 +7,18 @@ export function ErrorView(props: {
 }) {
   const className = props.class || 'error'
 
-  const body = props.children && props.children.length > 0
-    ? <div class={className + '__body'}>
-        {props.children}
-      </div>
-    : undefined
+  const body =
+    props.children && props.children.length > 0
+      ? <div class={className + '__body'}>
+          {props.children}
+        </div>
+      : undefined
 
   return props.error !== undefined
     ? <div class={className}>
-        <div class={className + '__message'}>{props.error.message}</div>
+        <div class={className + '__message'}>
+          {props.error.message}
+        </div>
         {body}
       </div>
     : null

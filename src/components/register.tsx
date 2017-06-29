@@ -76,9 +76,7 @@ class GetInfo extends Component<{}, GetInfoState> {
 const ChooseMethod = () =>
   <div>
     <p>choose method</p>
-
-    <Link href="/register/new-user">New User</Link>
-    {' '}
+    <Link href="/register/new-user">New User</Link>{' '}
     <Link href="/register/login">Login</Link>
   </div>
 

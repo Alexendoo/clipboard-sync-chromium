@@ -3,5 +3,7 @@
   "editor.formatOnSave": true,
   "prettier.semi": false,
   "prettier.singleQuote": true,
-  "prettier.trailingComma": "all"
+  "prettier.trailingComma": "all",
+  // requires https://github.com/prettier/prettier/commit/175cde1dc5077a859b0ebcee8238e3befaca7d89
+  "prettier.jsonEnable": []
 }
