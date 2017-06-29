@@ -1,18 +1,22 @@
 import { Component, ComponentConstructor, FunctionalComponent, h } from 'preact'
 
+type AnyComponentConstructor<Props> =
+  | ComponentConstructor<Props, any>
+  | FunctionalComponent<Props>
+
 export interface StageProps {
-  continue(nextProps?: object): void
+  continue<Props>(
+    nextComponent: AnyComponentConstructor<Props>,
+    nextProps?: Props,
+  ): void
 }
 
 interface StagesProps {
-  stages: Array<
-    ComponentConstructor<StageProps, any> | FunctionalComponent<StageProps>
-  >
-  initial?: object
+  initial: AnyComponentConstructor<StageProps>
 }
 
 interface StagesState {
-  index: number
+  component: AnyComponentConstructor<StageProps>
   lastProps?: object
 }
 
@@ -20,26 +24,25 @@ export class Stages extends Component<StagesProps, StagesState> {
   constructor() {
     super()
     this.state = {
-      index: 0,
+      component: this.props.initial,
+      lastProps: {},
     }
     this.onContinue = this.onContinue.bind(this)
   }
 
-  onContinue(nextProps?: object) {
-    if (this.state.index + 1 === this.props.stages.length) {
-      throw new Error('Out of stages')
-    }
+  onContinue(
+    nextComponent: AnyComponentConstructor<StageProps>,
+    nextProps?: object,
+  ) {
     this.setState({
-      index: this.state.index + 1,
+      component: nextComponent,
       lastProps: nextProps,
     })
   }
 
   render() {
-    const Stage = this.props.stages[this.state.index]
     return (
-      <Stage
-        {...this.props.initial}
+      <this.state.component
         {...this.state.lastProps}
         continue={this.onContinue}
       />
