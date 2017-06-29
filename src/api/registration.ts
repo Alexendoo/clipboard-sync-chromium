@@ -61,7 +61,7 @@ export async function login(secret: BufferSource) {
   const sessionString = util.utf8.read(new Uint8Array(sessionID), 0, 0)
 
   const target = new URL(`/invite/${sessionString}`, config.server.href)
-  target.protocol = 'wss'
+  target.protocol = 'ws'
 
   const ws = new WebSocketStream(target.href)
   console.log(ws)
@@ -75,4 +75,9 @@ export async function login(secret: BufferSource) {
   })
 
   ws.send(NewDevice.encode(newDevice).finish())
+
+  const bytes = await ws.read()
+  console.log(bytes)
 }
+
+window.l = login

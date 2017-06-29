@@ -2,32 +2,18 @@ import './popup.css'
 import './popup.html'
 
 import createHistory from 'history/createHashHistory'
-import { Component, h, render } from 'preact'
-import { Route, route, Router } from 'preact-router'
+import { h, render } from 'preact'
 import { Home } from '../components/home'
-import { RegisterRoutes } from '../components/register'
+import { Route, Router } from 'preact-router'
+import { RegisterRouter } from '../components/register'
 import { loadConfig } from '../state/config'
 
-class InitialRoute extends Component<{}, {}> {
-  async componentWillMount() {
-    try {
-      await loadConfig()
-      route('/home')
-    } catch (e) {
-      route('/register')
-    }
-  }
-
-  render() {
-    return <div />
-  }
-}
-
-const Main = () =>
+const MainRouter = () =>
   <Router history={createHistory()}>
-    <Route default component={InitialRoute} />
-    <Route path="/home" component={Home} />
-    {RegisterRoutes}
+    <Route default component={Home} />
   </Router>
 
-render(<Main />, document.body)
+loadConfig()
+  .then(() => <MainRouter />)
+  .catch(() => <RegisterRouter />)
+  .then(router => render(router, document.body))

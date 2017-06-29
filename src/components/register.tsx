@@ -1,7 +1,8 @@
+import createHistory from 'history/createHashHistory'
 import { Component, h } from 'preact'
-import { Link, route, Route } from 'preact-router'
+import { Link, route, Route, Router } from 'preact-router'
 import { getInfo, registerUser } from '../api/registration'
-import { newConfig, saveConfig, ServerConfig } from '../state/config'
+import { getConfig, newConfig, saveConfig, ServerConfig } from '../state/config'
 import { ErrorView } from './error'
 
 let serverConfig: ServerConfig
@@ -76,9 +77,9 @@ const ChooseMethod = () =>
   <div>
     <p>choose method</p>
 
-    <Link href="#/register/new-user">New User</Link>
+    <Link href="/register/new-user">New User</Link>
     {' '}
-    <Link href="#/register/login">Login</Link>
+    <Link href="/register/login">Login</Link>
   </div>
 
 interface NewUserState {
@@ -102,8 +103,21 @@ class NewUser extends Component<{}, NewUserState> {
   }
 }
 
-export const RegisterRoutes = [
-  <Route path="/register/" component={GetInfo} />,
-  <Route path="/register/method" component={ChooseMethod} />,
-  <Route path="/register/new-user" component={NewUser} />,
-]
+class Login extends Component<{}, {}> {
+  async componentWillMount() {
+    const config = getConfig()
+    console.log(config)
+  }
+
+  render() {
+    return <div />
+  }
+}
+
+export const RegisterRouter = () =>
+  <Router history={createHistory()}>
+    <Route default component={GetInfo} />
+    <Route path="/register/method" component={ChooseMethod} />
+    <Route path="/register/new-user" component={NewUser} />
+    <Route path="/register/login" component={Login} />
+  </Router>

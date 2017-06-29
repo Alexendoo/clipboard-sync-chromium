@@ -43,7 +43,7 @@ export class WebSocketStream {
     target.resolve(bytes)
   }
 
-  read() {
+  read(): Promise<Uint8Array> {
     if (this.err !== undefined) {
       return Promise.reject(this.err)
     }
