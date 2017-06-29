@@ -76,9 +76,9 @@ const ChooseMethod = () =>
   <div>
     <p>choose method</p>
 
-    <Link href="/register/new-user">New User</Link>
+    <Link href="#/register/new-user">New User</Link>
     {' '}
-    <Link href="/register/login">Login</Link>
+    <Link href="#/register/login">Login</Link>
   </div>
 
 interface NewUserState {
