@@ -1,21 +1,22 @@
-import createHistory from 'history/createHashHistory'
 import { Component, h } from 'preact'
-import { Link, route, Route, Router } from 'preact-router'
 import { getInfo, registerUser } from '../api/registration'
-import { getConfig, newConfig, saveConfig, ServerConfig } from '../state/config'
+import { Config, newConfig, saveConfig, ServerConfig } from '../state/config'
 import { ErrorView } from './error'
+import { Choice, Selector } from './select'
+import { stages } from './stages'
 
-let serverConfig: ServerConfig
-
-interface GetInfoState {
-  error?: Error
-  resolving: boolean
-  value: string
-}
-
-class GetInfo extends Component<{}, GetInfoState> {
-  constructor() {
-    super()
+class GetInfo extends Component<
+  {
+    next: (config: ServerConfig) => void
+  },
+  {
+    error?: Error
+    resolving: boolean
+    value: string
+  }
+> {
+  constructor(props: any) {
+    super(props)
 
     this.state = {
       value: 'http://localhost:8080',
@@ -44,11 +45,10 @@ class GetInfo extends Component<{}, GetInfoState> {
 
     try {
       const info = await getInfo(this.state.value)
-      serverConfig = {
+      this.props.next({
         href: this.state.value,
         info,
-      }
-      route('/register/method')
+      })
     } catch (error) {
       this.setState({
         error,
@@ -73,24 +73,21 @@ class GetInfo extends Component<{}, GetInfoState> {
   }
 }
 
-const ChooseMethod = () =>
-  <div>
-    <p>choose method</p>
-    <Link href="/register/new-user">New User</Link>{' '}
-    <Link href="/register/login">Login</Link>
-  </div>
-
-interface NewUserState {
-  error?: Error
-}
-
-class NewUser extends Component<{}, NewUserState> {
+class NewUser extends Component<
+  {
+    config: ServerConfig
+    next: () => void
+  },
+  {
+    error?: Error
+  }
+> {
   async componentWillMount() {
     try {
-      const config = newConfig(serverConfig)
+      const config = newConfig(this.props.config)
       await saveConfig(config)
       await registerUser()
-      route('/home')
+      this.props.next()
     } catch (error) {
       this.setState({ error })
     }
@@ -101,21 +98,32 @@ class NewUser extends Component<{}, NewUserState> {
   }
 }
 
-class Login extends Component<{}, {}> {
-  async componentWillMount() {
-    const config = getConfig()
-    console.log(config)
-  }
-
+class Login extends Component<
+  {
+    config: Config
+    next: () => void
+  },
+  {}
+> {
   render() {
     return <div />
   }
 }
 
-export const RegisterRouter = () =>
-  <Router history={createHistory()}>
-    <Route default component={GetInfo} />
-    <Route path="/register/method" component={ChooseMethod} />
-    <Route path="/register/new-user" component={NewUser} />
-    <Route path="/register/login" component={Login} />
-  </Router>
+export const Register = () =>
+  stages(function*(next) {
+    const Method = yield (
+      <Selector select={next}>
+        <Choice choice={NewUser}>New User</Choice>
+        <Choice choice={Login}>Login</Choice>
+      </Selector>
+    )
+
+    const serverConfig = yield <GetInfo next={next} />
+
+    yield <Method next={next} config={serverConfig} />
+
+    location.reload(true)
+  })
+
+window.Register = Register
