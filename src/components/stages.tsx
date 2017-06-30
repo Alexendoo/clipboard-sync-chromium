@@ -3,39 +3,33 @@ import { Component } from 'preact'
 export class Stages extends Component<
   {
     stepper(
-      next: (nextProps?: object) => void,
-    ): IterableIterator<JSX.Element | undefined>
+      next: (nextProps: any) => void,
+      error: (e: any) => void,
+    ): IterableIterator<JSX.Element>
   },
   {
     element: JSX.Element
   }
 > {
-  private pending: Promise<object>
-  private resolve: (nextProps: object) => void
-
   constructor() {
     super()
-    this.callback = this.callback.bind(this)
-    this.pending = Promise.resolve({})
+    this.next = this.next.bind(this)
+    this.error = this.error.bind(this)
+    this.iter = this.props.stepper(this.next, this.error)
   }
 
-  private callback(nextProps: object = {}) {
-    this.resolve(nextProps)
-    this.pending = new Promise(resolve => {
-      this.resolve = resolve
+  private iter: IterableIterator<JSX.Element>
+
+  private next(nextProps: any) {
+    this.setState({
+      element: this.iter.next(nextProps).value,
     })
   }
 
-  async componentWillMount() {
-    const iter = this.props.stepper(this.callback)
-
-    while (true) {
-      const props = await this.pending
-      const element = iter.next(props).value
-      if (element === undefined) break
-
-      this.setState({ element })
-    }
+  private error(e: any) {
+    this.setState({
+      element: this.iter.throw!(e).value,
+    })
   }
 
   render() {
