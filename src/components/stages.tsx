@@ -13,11 +13,12 @@ class Stages extends Component<
     element: JSX.Element
   }
 > {
-  constructor() {
-    super()
+  constructor(props: any) {
+    super(props)
     this.next = this.next.bind(this)
     this.error = this.error.bind(this)
     this.iter = this.props.stepper(this.next, this.error)
+    this.next(undefined)
   }
 
   private iter: IterableIterator<JSX.Element>
