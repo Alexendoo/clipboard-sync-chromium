@@ -1,11 +1,13 @@
-import { Component } from 'preact'
+import { Component, h } from 'preact'
 
-export class Stages extends Component<
+type stepper = (
+  next: (value: any) => void,
+  error: (e: any) => void,
+) => IterableIterator<JSX.Element>
+
+class Stages extends Component<
   {
-    stepper(
-      next: (nextProps: any) => void,
-      error: (e: any) => void,
-    ): IterableIterator<JSX.Element>
+    stepper: stepper
   },
   {
     element: JSX.Element
@@ -20,9 +22,9 @@ export class Stages extends Component<
 
   private iter: IterableIterator<JSX.Element>
 
-  private next(nextProps: any) {
+  private next(value: any) {
     this.setState({
-      element: this.iter.next(nextProps).value,
+      element: this.iter.next(value).value,
     })
   }
 
@@ -35,4 +37,8 @@ export class Stages extends Component<
   render() {
     return this.state.element
   }
+}
+
+export function stages(stepper: stepper) {
+  return <Stages stepper={stepper} />
 }
