@@ -34,18 +34,12 @@ export function newConfig(serverConfig: ServerConfig): Config {
   }
 }
 
-let loaded: Config | undefined
-
 /**
- * Returns the current application Config, must first be initialised with
+ * globally available Config, must be first loaded with
  * {@link loadConfig} or {@link saveConfig}
  */
-export function getConfig(): Config {
-  if (loaded === undefined) {
-    throw new Error('Config not loaded')
-  }
-  return loaded
-}
+let loaded: Config
+export { loaded as config }
 
 export async function loadConfig(): Promise<Config> {
   const db = await getDB()

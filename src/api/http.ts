@@ -1,7 +1,6 @@
-import { getConfig } from '../state/config'
+import { config } from '../state/config'
 
 async function http(path: string, method: 'GET' | 'POST', body?: Uint8Array) {
-  const config = getConfig()
   const target = new URL(path, config.server.href)
 
   const response = await fetch(target.href, {

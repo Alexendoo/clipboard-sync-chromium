@@ -1,8 +1,14 @@
 import { util } from 'protobufjs'
-import { Link, NewDevice, ServerInfo, Signed } from '../../generated/messages'
+import {
+  Link,
+  NewDevice,
+  ParentHello,
+  ServerInfo,
+  Signed,
+} from '../../generated/messages'
 import { HMACSign } from '../crypto/primitives'
 import { sign, Valid } from '../crypto/valid'
-import { getConfig } from '../state/config'
+import { config } from '../state/config'
 import { HTTPError, post } from './http'
 import { WebSocketStream } from './websocket'
 
@@ -23,7 +29,6 @@ export async function registerDevice(
   newDevice: NewDevice,
   lastLink: Valid<Link>,
 ) {
-  const config = getConfig()
   const link = new Link({
     newDevice,
     prev: lastLink.signature,
@@ -37,7 +42,6 @@ export async function registerDevice(
 }
 
 export async function registerUser() {
-  const config = getConfig()
   const newDevice = new NewDevice({
     FCMToken: 'f',
     name: 'moo',
