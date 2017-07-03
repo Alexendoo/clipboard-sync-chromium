@@ -1,4 +1,4 @@
-import { util } from 'protobufjs'
+import { util } from 'protobufjs/minimal'
 import {
   Link,
   NewDevice,

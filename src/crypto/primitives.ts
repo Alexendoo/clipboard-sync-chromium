@@ -1,4 +1,4 @@
-import { util } from 'protobufjs'
+import { util } from 'protobufjs/minimal'
 
 export async function PBKDF2(string: string) {
   const buffer = new Uint8Array(util.utf8.length(string))
