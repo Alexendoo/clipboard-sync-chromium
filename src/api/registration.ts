@@ -1,5 +1,6 @@
 import { util } from 'protobufjs/minimal'
 import {
+  ChildHello,
   Link,
   NewDevice,
   ParentHello,
@@ -59,18 +60,35 @@ export async function registerUser() {
   await post('/chain', payload)
 }
 
-export async function login(secret: BufferSource) {
-  const config = getConfig()
-  const sessionID = await HMACSign(secret, 'clipboard-sync-invite')
-  const sessionString = util.utf8.read(new Uint8Array(sessionID), 0, 0)
+async function inviteSession(secret: BufferSource) {
+  const id = await HMACSign(secret, 'clipboard-sync-invite')
+  const path = util.utf8.read(new Uint8Array(id), 0, 0)
 
-  const target = new URL(`/invite/${sessionString}`, config.server.href)
+  const target = new URL(`/invite/${path}`, config.server.href)
   target.protocol = 'ws'
 
-  const ws = new WebSocketStream(target.href)
-  console.log(ws)
+  return new WebSocketStream(target.href)
+}
+
+window.secret = new Uint8Array([1, 2, 3, 4, 5, 6])
+
+export async function invite(root: Link) {
+  // TODO: wordlist based
+  const ws = await inviteSession(window.secret)
+
+  const ph = new ParentHello({
+    root,
+  })
+
   await ws.open
-  console.log('open')
+  ws.send(ParentHello.encode(ph).finish())
+
+  const bytes = await ws.read()
+  console.log(bytes)
+}
+
+export async function login(secret: BufferSource) {
+  const ws = await inviteSession(secret)
 
   const newDevice = new NewDevice({
     FCMToken: 'e',
@@ -78,7 +96,12 @@ export async function login(secret: BufferSource) {
     publicKey: config.ed25519.publicKey,
   })
 
-  ws.send(NewDevice.encode(newDevice).finish())
+  const ch = new ChildHello({
+    device: newDevice,
+  })
+
+  await ws.open
+  ws.send(ChildHello.encode(ch).finish())
 
   const bytes = await ws.read()
   console.log(bytes)
