@@ -5,7 +5,7 @@ install:
   - yarn install
   - yarn list
 script:
-  - yarn build
-  - yarn build:prod
+  - yarn build -- --verbose
+  - yarn build:prod -- --verbose
   - yarn lint:prettier
   - yarn lint:tslint
