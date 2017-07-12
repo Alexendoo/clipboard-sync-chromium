@@ -5,7 +5,8 @@
       "webworker",
       "es2017",
       "scripthost"
-    ]
+    ],
+    "types": []
   },
   "include": [
     "./worker.ts"

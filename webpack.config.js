@@ -57,7 +57,11 @@ module.exports = function(env) {
             },
             {
               test: /\.tsx?$/,
-              loader: 'ts-loader?logLevel=warn',
+              loader: 'ts-loader',
+              options: {
+                instance: 'app',
+                logLevel: 'warn',
+              },
             },
           ],
         },
