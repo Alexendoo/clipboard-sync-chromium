@@ -21,6 +21,7 @@ module.exports = function(env) {
       new webpack.LoaderOptionsPlugin({
         minimize: true,
       }),
+      new webpack.optimize.ModuleConcatenationPlugin(),
     )
   }
 
