@@ -1,6 +1,7 @@
 addEventListener('message', event => {
+  const success: boolean = true
   postMessage({
-    success: true,
+    success,
     value: event.data,
   })
 })

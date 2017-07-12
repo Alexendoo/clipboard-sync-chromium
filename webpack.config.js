@@ -45,18 +45,17 @@ module.exports = function(env) {
       rules: [
         {
           oneOf: [
-            // {
-            //   test: /worker\.ts$/,
-            //   loader: 'ts-loader',
-            //   options: {
-            //     instance: 'worker',
-            //     configFileName: './src/crypto/tsconfig.json',
-            //     logLevel: 'warn',
-            //   },
-            // },
+            {
+              test: /worker\.ts$/,
+              loader: 'ts-loader',
+              options: {
+                instance: 'worker',
+                configFileName: './src/crypto/tsconfig.json',
+                logLevel: 'warn',
+              },
+            },
             {
               test: /\.tsx?$/,
-              exclude: /worker\.ts$/,
               loader: 'ts-loader?logLevel=warn',
             },
           ],
