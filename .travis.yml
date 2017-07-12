@@ -6,5 +6,6 @@ install:
   - yarn list
 script:
   - yarn build
+  - yarn build:prod
   - yarn lint:prettier
   - yarn lint:tslint
