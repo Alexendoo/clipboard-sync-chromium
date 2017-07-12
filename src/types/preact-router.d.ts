@@ -41,12 +41,16 @@ declare module 'preact-router' {
     render(props: RouterProps, {}): preact.VNode
   }
 
-  export interface RouteProps<C> extends RoutableProps {
-    component: preact.AnyComponent<C, any>
+  type AnyComponent<Props> =
+    | preact.FunctionalComponent<Props>
+    | preact.ComponentConstructor<Props, any>
+
+  export interface RouteProps<Props> extends RoutableProps {
+    component: AnyComponent<Props>
   }
 
-  export function Route<C>(
-    props: RouteProps<C> & { [P in keyof C]: C[P] },
+  export function Route<Props>(
+    props: RouteProps<Props> & Partial<Props>,
   ): preact.VNode
 
   export function Link(props: JSX.HTMLAttributes): preact.VNode

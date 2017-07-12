@@ -11,6 +11,7 @@ module.exports = function(env) {
   const plugins = [
     new webpack.optimize.CommonsChunkPlugin({
       name: 'common',
+      chunks: ['background', 'popup'],
     }),
     new ExtractTextPlugin('[name].css'),
   ]
@@ -26,6 +27,7 @@ module.exports = function(env) {
   return {
     entry: {
       background: './src/background/background.ts',
+      crypto_worker: './src/crypto/worker.ts',
       popup: './src/popup/popup.tsx',
     },
 
@@ -42,8 +44,22 @@ module.exports = function(env) {
     module: {
       rules: [
         {
-          test: /\.tsx?$/,
-          loader: 'ts-loader',
+          oneOf: [
+            // {
+            //   test: /worker\.ts$/,
+            //   loader: 'ts-loader',
+            //   options: {
+            //     instance: 'worker',
+            //     configFileName: './src/crypto/tsconfig.json',
+            //     logLevel: 'warn',
+            //   },
+            // },
+            {
+              test: /\.tsx?$/,
+              exclude: /worker\.ts$/,
+              loader: 'ts-loader?logLevel=warn',
+            },
+          ],
         },
         {
           test: /.(?:json|html)$/,

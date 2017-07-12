@@ -7,6 +7,7 @@ import { Route, Router } from 'preact-router'
 import { Home } from '../components/home'
 import { Invite } from '../components/invite'
 import { Register } from '../components/register'
+import '../crypto'
 import { loadConfig } from '../state/config'
 
 const Main = () =>

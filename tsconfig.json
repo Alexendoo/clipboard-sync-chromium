@@ -10,10 +10,17 @@
     "noUnusedParameters": true,
     "sourceMap": true,
     "strict": true,
-    "target": "es2017"
+    "target": "es2017",
+    "types": [
+      "chrome"
+    ]
   },
   "include": [
     "src/**/*",
     "generated/**/*"
+  ],
+  "exclude": [
+    "src/**/worker.ts",
+    "node_modules"
   ]
 }
