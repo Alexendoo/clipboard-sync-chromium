@@ -23,7 +23,7 @@
     "history": "^4.6.3",
     "idb": "^2.0.3",
     "preact": "^8.2.1",
-    "preact-router": "^2.5.4",
+    "preact-router": "^2.5.5",
     "protobufjs": "~6.8.0",
     "rxjs": "^5.4.2",
     "tweetnacl": "^1.0.0"
