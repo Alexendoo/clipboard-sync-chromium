@@ -4,7 +4,7 @@
   "scripts": {
     "build:prod": "webpack --env.production",
     "build": "webpack",
-    "lint:prettier": "prettier --no-semi --single-quote --trailing-comma all --list-different \"src/**/*.{css,ts,tsx}\"",
+    "lint:prettier": "prettier --no-semi --single-quote --trailing-comma all --list-different \"src/**/*.{css,json,ts,tsx}\"",
     "lint:tslint": "tslint -p tsconfig.json",
     "proto": "pbjs -t static-module -w es6 -o generated/messages.js generated/messages.proto && pbts -o generated/messages.d.ts generated/messages.js",
     "watch": "webpack -w"
@@ -35,7 +35,7 @@
     "css-loader": "^0.28.4",
     "extract-text-webpack-plugin": "^3.0.0",
     "file-loader": "^0.11.2",
-    "prettier": "^1.5.2",
+    "prettier": "^1.5.3",
     "rimraf": "^2.6.1",
     "ts-loader": "^2.2.2",
     "tslint": "^5.5.0",
