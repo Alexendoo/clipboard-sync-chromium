@@ -1,17 +1,9 @@
 {
   "extends": "../../tsconfig.json",
   "compilerOptions": {
-    "lib": [
-      "webworker",
-      "es2017",
-      "scripthost"
-    ],
+    "lib": ["webworker", "es2017", "scripthost"],
     "types": []
   },
-  "include": [
-    "./worker.ts"
-  ],
-  "exclude": [
-    "node_modules"
-  ]
+  "include": ["./worker.ts"],
+  "exclude": ["node_modules"]
 }

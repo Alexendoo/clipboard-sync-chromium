@@ -11,16 +11,8 @@
     "sourceMap": true,
     "strict": true,
     "target": "es2017",
-    "types": [
-      "chrome"
-    ]
+    "types": ["chrome"]
   },
-  "include": [
-    "src/**/*",
-    "generated/**/*"
-  ],
-  "exclude": [
-    "src/**/worker.ts",
-    "node_modules"
-  ]
+  "include": ["src/**/*", "generated/**/*"],
+  "exclude": ["src/**/worker.ts", "node_modules"]
 }

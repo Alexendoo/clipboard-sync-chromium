@@ -16,7 +16,5 @@
     "gcm",
     "storage"
   ],
-  "web_accessible_resources": [
-    "*.map"
-  ]
+  "web_accessible_resources": ["*.map"]
 }
